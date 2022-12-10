@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+    font-size: 0.9rem;
+    color:#afafaf;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+    max-height: max-content;
+    background-color: rgb(24, 23, 23);
+}
+.profile .profile-container{
+    width: fit-content;
+    height: fit-content;
+    background-color: #000000;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 50px 5px #000000;
+}
+
+.profile .card .related-topics {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+@media (max-width: 1366px) {
+    
+}
