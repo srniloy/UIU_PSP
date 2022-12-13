@@ -17,7 +17,7 @@
     <div class="login_page">
         <div class="login_page_container">
             <div class="heading text-center">
-                <h1> UIU Student Hub</h1>
+                <h1> UIU PSP</h1>
                 <p>Get help by helping others :)</p>
                 <br>
                 <h3>Log In</h3>

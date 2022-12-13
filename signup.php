@@ -17,7 +17,7 @@
     <div class="signup_page">
         <div class="signup_page_container">
             <div class="heading text-center">
-                <h1>UIU Student Hub</h1>
+                <h1>UIU PSP</h1>
                 <p>Get help by helping others :)</p>
                 <br>
                 <h3>Create Account</h3>
