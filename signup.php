@@ -48,7 +48,7 @@
                 <br>
                 <div class="buttons">
                     <button type="submit" class="btn btn-primary">Sign up</button>
-                    <a href="/Student_Hub/login.php" class="btn btn-success">Go back to Login</a>
+                    <a href="/UIU_PSP_PR/login.php" class="btn btn-success">Go back to Login</a>
                 </div>
             </form>
 

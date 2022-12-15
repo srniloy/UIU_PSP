@@ -18,7 +18,6 @@
         <div class="login_page_container">
             <div class="heading text-center">
                 <h1> UIU PSP</h1>
-                <p>Get help by helping others :)</p>
                 <br>
                 <h3>Log In</h3>
                 <br>
@@ -37,7 +36,7 @@
                 <br>
                 <div class="buttons">
                     <button type="submit" class="btn btn-primary">Log in</button>
-                    <a href="/Student_Hub/signup.php" class="btn btn-success">Create a new Account</a>
+                    <a href="signup.php" class="btn btn-success">Create a new Account</a>
                 </div>
             </form>
 

@@ -19,7 +19,7 @@
     background-size: cover;
 }
 .login_page_container{
-    padding: 5vh;
+    padding: 50px;
     height: fit-content;
     width: 500px;
     max-width: 500px;
@@ -47,28 +47,17 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 10%;
+    margin-top: 20px;
 }
 .login_page_container .buttons *{
     padding: 1.5vh;
 }
 
-
-@media (max-width: 600px) {
+@media (max-width: 1366px) {
     .login_page_container{
         
-        width: 90vw;
-        
-    }
-    .login_page_container .buttons{
-        display: grid;
-        grid-template-columns: 1fr;
-        row-gap: 10%;
-    }
-}
-@media (max-height: 700px) {
-    .login_page_container{
-        
-        height: 90vh;
+        padding: 50px 30px;
+        width: 450px;
         
     }
 }

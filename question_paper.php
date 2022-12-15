@@ -35,7 +35,7 @@
                     <input type="text" class="form-control" id="floatingInput" placeholder="Email (University Provided)" required>
                     <label for="floatingInput">Trimester Code (222 for Summer 2022)</label>
                 </div>
-                <div >
+                <div>
                     <label class="form-label text-light" for="questionFile">Question Paper (only .pdf)</label>
                     <input type="file" class="form-control" id="questionFile" placeholder="Question Paper (only .pdf)" required>
                 </div>
