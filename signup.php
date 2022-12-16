@@ -14,6 +14,8 @@
 
 <body>
 
+
+
     <div class="signup_page">
         <div class="signup_page_container">
             <div class="heading text-center">
@@ -30,18 +32,15 @@
                     <label for="floatingInput1">Name</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="tel" name="student_id" class="form-control" id="floatingInput2"
-                        placeholder="Student Id" required>
+                    <input type="tel" name="student_id" class="form-control" id="floatingInput2" placeholder="Student Id" required>
                     <label for="floatingInput2">Student Id</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="email" name="email" class="form-control" id="floatingInput3"
-                        placeholder="Email (University Provided)" required>
+                    <input type="email" name="email" class="form-control" id="floatingInput3" placeholder="Email (University Provided)" required>
                     <label for="floatingInput3">Email (University Provided)</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="floatingPassword"
-                        placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
 
                 </div>
