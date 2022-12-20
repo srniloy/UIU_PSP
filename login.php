@@ -23,19 +23,19 @@
                 <br>
             </div>
 
-            <form class="login_form" action="#">
+            <form class="login_form" action="#" >
                 <div class="form-floating mb-3">
-                    <input type="tel" class="form-control" id="floatingInput" placeholder="Student Id" required>
+                    <input type="tel" name="student_id" class="form-control" id="floatingInput" placeholder="Student Id" required>
                     <label for="floatingInput">Student Id</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
 
                 </div>
                 <br>
                 <div class="buttons">
-                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="submit" class="btn btn-primary login-btn">Log in</button>
                     <a href="signup.php" class="btn btn-success">Create a new Account</a>
                 </div>
             </form>
@@ -47,6 +47,7 @@
 
 
     <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="javascript/login.js"></script>
 </body>
 
 </html>

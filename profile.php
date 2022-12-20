@@ -166,8 +166,8 @@ if (!isset($_SESSION['user_id'])) {
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
-                            <!-- <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="10000">
@@ -207,15 +207,15 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
 
                             </div>
-                            <!-- <div class="carousel-item" data-bs-interval="2000">
+                            <div class="carousel-item" data-bs-interval="2000">
 
 
                             <div class="question-view">
                                 <h5>Data Structure and Algorithm (CSE2217)</h5>
-                                <p class="unavailable-txt">
+                                <p class="unavailable-txt visibility-hide">
                                     Question paper of Data structure and Algorithm course is not available yet.
                                 </p>
-                                <div class="question-set visibility-hide">
+                                <div class="question-set">
                                     <div class="questions ct">
                                         <h6>Mid Questions</h6>
                                         <div class="q-list">
@@ -278,7 +278,7 @@ if (!isset($_SESSION['user_id'])) {
                                 </div>
                             </div>
                             
-                        </div> -->
+                        </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
