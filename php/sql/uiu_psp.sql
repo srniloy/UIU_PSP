@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2022 at 04:56 PM
+-- Generation Time: Dec 21, 2022 at 05:30 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -125,17 +125,19 @@ CREATE TABLE `users` (
   `student_id` varchar(15) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL
+  `password` varchar(30) NOT NULL,
+  `img` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_no`, `student_id`, `name`, `email`, `password`) VALUES
-(40, '3453453', 'tanvir', 'tanvir@gmail.com', 'fghfhfrwg'),
-(43, '36453645', 'niloy', 'niloy@gmail.com', 'rhfdhbsdfgbh'),
-(54, '011202536', 'Towsif Ahmed', 'towsif@gmail.com', '1234');
+INSERT INTO `users` (`user_no`, `student_id`, `name`, `email`, `password`, `img`) VALUES
+(40, '3453453', 'tanvir', 'tanvir@gmail.com', 'fghfhfrwg', ''),
+(43, '123', 'niloy', 'niloy@gmail.com', '123', ''),
+(54, '011202536', 'Towsif Ahmed', 'towsif@gmail.com', '1234', ''),
+(55, '011202271', 'Shahriar Rahman', 'shahriar@gmail.com', '1234', 'default-img.jpg');
 
 --
 -- Indexes for dumped tables
@@ -161,7 +163,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `user_no` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UIU Student Hub</title>
+    <title>UIU PSP</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/profile.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
             <section class="first-sec">
                 <div class="profile-pic">
-                    <img src="resources/avater.png" alt="">
+                    <img src="resources/profile-pic/<?php echo $row['img'] ?>" alt="">
                 </div>
                 <div class="user-info">
                     <h4><?php echo $row['name'] ?></h4>
@@ -48,35 +48,47 @@ if (!isset($_SESSION['user_id'])) {
                     <h6><?php echo $row['email'] ?></h6>
                 </div>
                 <div class="edit-button">
-                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#edit">Edit</button>
-                    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <button type="button" class="btn btn-outline-light" data-bs-toggle="modal"
+                        data-bs-target="#edit">Edit</button>
+                    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Edit your profile information
                                     </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="signup_form" action="#">
+                                    <form class="signup_form update-user-info-form" enctype="multipart/form-data"
+                                        action="#">
                                         <div class="form-floating mb-2">
-                                            <input type="text" name="name" value="<?php echo $row['name'] ?>" class="form-control" id="floatingInput1" placeholder="Name" required>
+                                            <input type="text" name="name" value="<?php echo $row['name'] ?>"
+                                                class="form-control" id="floatingInput1" placeholder="Name" required>
                                             <label for="floatingInput1">Name</label>
                                         </div>
                                         <div class="form-floating mb-2">
-                                            <input type="tel" name="student_id" value="<?php echo $row['student_id'] ?>" class="form-control" id="floatingInput2" placeholder="Student Id" required>
+                                            <input type="tel" name="student_id" value="<?php echo $row['student_id'] ?>"
+                                                class="form-control" id="floatingInput2" placeholder="Student Id"
+                                                required>
                                             <label for="floatingInput2">Student Id</label>
                                         </div>
                                         <div class="form-floating mb-2">
-                                            <input type="email" name="email" value="<?php echo $row['email'] ?>" class="form-control" id="floatingInput3" placeholder="Email (University Provided)" required>
+                                            <input type="email" name="email" value="<?php echo $row['email'] ?>"
+                                                class="form-control" id="floatingInput3"
+                                                placeholder="Email (University Provided)" required>
                                             <label for="floatingInput3">Email (University Provided)</label>
                                         </div>
                                         <div class="form-floating">
-                                            <input type="password" name="password" value="<?php echo $row['password'] ?>" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                            <input type="password" name="password"
+                                                value="<?php echo $row['password'] ?>" class="form-control"
+                                                id="floatingPassword" placeholder="Password" required>
                                             <label for="floatingPassword">Password</label>
                                         </div>
                                         <div class="mt-2">
-                                            <label class="form-label text-dark" style="margin:0 0 0 1px;" for="profilePic">Enter your profile picture (only png, jpg &
+                                            <label class="form-label text-dark" style="margin:0 0 0 1px;"
+                                                for="profilePic">Enter your profile picture (only png, jpg &
                                                 jpeg)</label>
                                             <input type="file" class="form-control" id="profilePic" placeholder="">
                                         </div>
@@ -88,8 +100,10 @@ if (!isset($_SESSION['user_id'])) {
                                         </div> -->
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary update-user-info-btn">Save
+                                                changes</button>
                                         </div>
                                     </form>
                                 </div>
@@ -108,24 +122,28 @@ if (!isset($_SESSION['user_id'])) {
                 </div>
                 <div class="taken-course">
                     <div class="add-course-option">
-                        <div class="modal fade" id="addCourse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="addCourse" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h1 class="modal-title fs-5" id="exampleModalLabel">Add Course</h1>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <form class="signup_form" action="#" autocomplete="off">
                                             <div class="course-id-container mb-2">
                                                 <div class="form-floating course-id-automate">
-                                                    <input type="text" class="form-control" id="courseId" placeholder="Type a name here..." required />
+                                                    <input type="text" class="form-control" id="courseId"
+                                                        placeholder="Type a name here..." required />
                                                     <label for="courseId">Course ID</label>
                                                 </div>
                                                 <ul class="course-search-list"></ul>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Add</button>
                                             </div>
                                         </form>
@@ -165,9 +183,12 @@ if (!isset($_SESSION['user_id'])) {
                 <div class="show-questions">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
+                                class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="10000">
@@ -183,7 +204,8 @@ if (!isset($_SESSION['user_id'])) {
                                         <div class="questions ct">
                                             <h6>Mid Questions</h6>
                                             <div class="q-list">
-                                                <a href="/php/question_papers/213_CSE_2217_Mid_Question.pdf" class="" download>summer 2022.pdf</a>
+                                                <a href="/php/question_papers/213_CSE_2217_Mid_Question.pdf" class=""
+                                                    download>summer 2022.pdf</a>
                                                 <a href="#" class="">spring 2022.pdf</a>
                                                 <a href="#" class="">fall 2022.pdf</a>
                                                 <a href="#" class="">fall 2022.pdf</a>
@@ -198,7 +220,8 @@ if (!isset($_SESSION['user_id'])) {
                                         <div class="questions final">
                                             <h6>Final Questions</h6>
                                             <div class="btn-group-vertical q-list">
-                                                <a href="/php/question_papers/171_CSI_227_Final_Question.pdf" class="" download>summer 2022.pdf</a>
+                                                <a href="/php/question_papers/171_CSI_227_Final_Question.pdf" class=""
+                                                    download>summer 2022.pdf</a>
                                                 <a href="#" class="">spring 2022.pdf</a>
                                                 <a href="#" class="">fall 2022.pdf</a>
                                             </div>
@@ -210,81 +233,87 @@ if (!isset($_SESSION['user_id'])) {
                             <div class="carousel-item" data-bs-interval="2000">
 
 
-                            <div class="question-view">
-                                <h5>Data Structure and Algorithm (CSE2217)</h5>
-                                <p class="unavailable-txt visibility-hide">
-                                    Question paper of Data structure and Algorithm course is not available yet.
-                                </p>
-                                <div class="question-set">
-                                    <div class="questions ct">
-                                        <h6>Mid Questions</h6>
-                                        <div class="q-list">
-                                            <a href="/php/question_papers/213_CSE_2217_Mid_Question.pdf" class="" download>summer 2022.pdf</a>
-                                            <a href="#" class="">spring 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
+                                <div class="question-view">
+                                    <h5>Data Structure and Algorithm (CSE2217)</h5>
+                                    <p class="unavailable-txt visibility-hide">
+                                        Question paper of Data structure and Algorithm course is not available yet.
+                                    </p>
+                                    <div class="question-set">
+                                        <div class="questions ct">
+                                            <h6>Mid Questions</h6>
+                                            <div class="q-list">
+                                                <a href="/php/question_papers/213_CSE_2217_Mid_Question.pdf" class=""
+                                                    download>summer 2022.pdf</a>
+                                                <a href="#" class="">spring 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="questions final">
-                                        <h6>Final Questions</h6>
-                                        <div class="btn-group-vertical q-list">
-                                            <a href="/php/question_papers/171_CSI_227_Final_Question.pdf" class="" download>summer 2022.pdf</a>
-                                            <a href="#" class="">spring 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="carousel-item">
-
-
-                            <div class="question-view">
-                                <h5>Data Structure and Algorithm (CSE2217)</h5>
-                                <p class="unavailable-txt">
-                                    Question paper of Data structure and Algorithm course is not available yet.
-                                </p>
-                                <div class="question-set visibility-hide">
-                                    <div class="questions ct">
-                                        <h6>Mid Questions</h6>
-                                        <div class="q-list">
-                                            <a href="/php/question_papers/213_CSE_2217_Mid_Question.pdf" class="" download>summer 2022.pdf</a>
-                                            <a href="#" class="">spring 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
-                                        </div>
-                                    </div>
-                                    <div class="questions final">
-                                        <h6>Final Questions</h6>
-                                        <div class="btn-group-vertical q-list">
-                                            <a href="/php/question_papers/171_CSI_227_Final_Question.pdf" class="" download>summer 2022.pdf</a>
-                                            <a href="#" class="">spring 2022.pdf</a>
-                                            <a href="#" class="">fall 2022.pdf</a>
+                                        <div class="questions final">
+                                            <h6>Final Questions</h6>
+                                            <div class="btn-group-vertical q-list">
+                                                <a href="/php/question_papers/171_CSI_227_Final_Question.pdf" class=""
+                                                    download>summer 2022.pdf</a>
+                                                <a href="#" class="">spring 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
-                            
+                            <div class="carousel-item">
+
+
+                                <div class="question-view">
+                                    <h5>Data Structure and Algorithm (CSE2217)</h5>
+                                    <p class="unavailable-txt">
+                                        Question paper of Data structure and Algorithm course is not available yet.
+                                    </p>
+                                    <div class="question-set visibility-hide">
+                                        <div class="questions ct">
+                                            <h6>Mid Questions</h6>
+                                            <div class="q-list">
+                                                <a href="/php/question_papers/213_CSE_2217_Mid_Question.pdf" class=""
+                                                    download>summer 2022.pdf</a>
+                                                <a href="#" class="">spring 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                            </div>
+                                        </div>
+                                        <div class="questions final">
+                                            <h6>Final Questions</h6>
+                                            <div class="btn-group-vertical q-list">
+                                                <a href="/php/question_papers/171_CSI_227_Final_Question.pdf" class=""
+                                                    download>summer 2022.pdf</a>
+                                                <a href="#" class="">spring 2022.pdf</a>
+                                                <a href="#" class="">fall 2022.pdf</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                            data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -382,6 +411,9 @@ if (!isset($_SESSION['user_id'])) {
             courseIDList.style.border = "none";
         }
     </script>
+
+
+    <script src="javascript/profile.js"></script>
 </body>
 
 </html>

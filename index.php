@@ -52,14 +52,14 @@ if (!isset($_SESSION['user_id'])) {
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li class="nav-item">
                                     <a class="navbar-brand d-flex align-items-center" href="profile.php">
-                                        <img src="resources/avater.png" alt="Your Photo" style="width:40px;" class="rounded-pill me-3">
+                                        <img src="resources/profile-pic/<?php echo $row['img'] ?>" alt="Your Photo" style="width:40px;" class="rounded-pill me-3">
                                         <h5 class="name" style="line-height: 40px; margin: 0;">
                                             <?php echo $row['name'] ?>
                                         </h5>
                                     </a>
                                 </li>
                             </ul>
-                            <button class="btn custom-btn logout-btn">Logout <i class="fa fa-sign-out"></i></button>
+                            <a href="php/logout.php?logout_id=<?php echo $row['student_id'] ?>" class="btn custom-btn logout-btn">Logout <i class="fa fa-sign-out"></i></a>
                         </div>
                     </div>
                 </div>

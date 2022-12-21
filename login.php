@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Student Hub</title>
+    <title>Login | UIU PSP</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
@@ -23,7 +23,7 @@
                 <br>
             </div>
 
-            <form class="login_form" action="#" >
+            <form class="login_form" action="#">
                 <div class="form-floating mb-3">
                     <input type="tel" name="student_id" class="form-control" id="floatingInput" placeholder="Student Id" required>
                     <label for="floatingInput">Student Id</label>

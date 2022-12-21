@@ -15,8 +15,8 @@ if (!empty($name) && !empty($id) && !empty($email) && !empty($password)) {
         if (mysqli_num_rows($sql) > 0) {
             echo $email . " - This email already exist";
         } else {
-            $sql2 = mysqli_query($connection, "INSERT INTO users(student_id,name,email,password) 
-                                VALUES ('{$id}', '{$name}', '{$email}', '{$password}')");
+            $sql2 = mysqli_query($connection, "INSERT INTO users(student_id,name,email,password,img) 
+                                VALUES ('{$id}', '{$name}', '{$email}', '{$password}', 'default-img.jpg')");
             if ($sql2) {
                 $sql3 = mysqli_query($connection, "SELECT student_id FROM users WHERE email = '{$email}'");
                 if (mysqli_num_rows($sql3) > 0) {
@@ -30,3 +30,5 @@ if (!empty($name) && !empty($id) && !empty($email) && !empty($password)) {
         }
     }
 }
+
+?>
