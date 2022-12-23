@@ -97,6 +97,7 @@
 
 .profile .second-sec .list-items {
     padding: 10px 5px;
+    color: #000000;
 }
 .profile .second-sec .course-id-container {
     position: relative;
@@ -222,6 +223,8 @@
 .profile .third-sec .q-list{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 100px;
     overflow-y: auto;
     background-color: #838383a3;

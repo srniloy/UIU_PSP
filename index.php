@@ -40,26 +40,31 @@ if (!isset($_SESSION['user_id'])) {
                     <a class="navbar-brand" style="color: #f50;" href="#">UIU PSP</a>
 
 
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
                         <span class="navbar-toggler-icon" style="font-size: 1.8rem;"></span>
                     </button>
-                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+                    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+                        aria-labelledby="offcanvasDarkNavbarLabel">
                         <div class="offcanvas-header">
                             <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Profile</h5>
-                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                                 <li class="nav-item">
                                     <a class="navbar-brand d-flex align-items-center" href="profile.php">
-                                        <img src="resources/profile-pic/<?php echo $row['img'] ?>" alt="Your Photo" style="width:40px;" class="rounded-pill me-3">
+                                        <img src="resources/profile-pic/<?php echo $row['img'] ?>" alt="Your Photo"
+                                            style="width:40px;" class="rounded-pill me-3">
                                         <h5 class="name" style="line-height: 40px; margin: 0;">
                                             <?php echo $row['name'] ?>
                                         </h5>
                                     </a>
                                 </li>
                             </ul>
-                            <a href="php/logout.php?logout_id=<?php echo $row['student_id'] ?>" class="btn custom-btn logout-btn">Logout <i class="fa fa-sign-out"></i></a>
+                            <a href="php/logout.php?logout_id=<?php echo $row['student_id'] ?>"
+                                class="btn custom-btn logout-btn">Logout <i class="fa fa-sign-out"></i></a>
                         </div>
                     </div>
                 </div>
@@ -70,16 +75,23 @@ if (!isset($_SESSION['user_id'])) {
             <div class="user_activity">
                 <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active px-lg-5" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Activity</button>
+                        <button class="nav-link active px-lg-5" id="home-tab" data-bs-toggle="tab"
+                            data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                            aria-selected="true">Activity</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link px-lg-5" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Pending</button>
+                        <button class="nav-link px-lg-5" id="profile-tab" data-bs-toggle="tab"
+                            data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane"
+                            aria-selected="false">Pending</button>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link px-lg-5" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Solved</button>
+                        <button class="nav-link px-lg-5" id="contact-tab" data-bs-toggle="tab"
+                            data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane"
+                            aria-selected="false">Solved</button>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active post-activity-pane" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                    <div class="tab-pane fade show active post-activity-pane" id="home-tab-pane" role="tabpanel"
+                        aria-labelledby="home-tab" tabindex="0">
                         <div class="post-container">
 
 
@@ -103,7 +115,8 @@ if (!isset($_SESSION['user_id'])) {
                                             <nav class="nav nav-pills nav-fill">
                                                 <p class="nav-link disabled">Data Structure and Algorithm</p>
 
-                                                <p class="nav-link disabled arrow"><i class="fa fa-long-arrow-right"></i></p>
+                                                <p class="nav-link disabled arrow"><i
+                                                        class="fa fa-long-arrow-right"></i></p>
                                                 <p class="nav-link disabled ">Binary Tree</p>
                                             </nav>
                                         </div>
@@ -112,7 +125,8 @@ if (!isset($_SESSION['user_id'])) {
                                                 <p class="nav-link disabled">Solutions: 05</p>
                                                 <p class="nav-link disabled">Likes: 19</p>
                                                 <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a href="#">username</a> 3 mins ago</small></p>
+                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
+                                                            href="#">username</a> 3 mins ago</small></p>
                                             </nav>
                                         </div>
                                     </div>
@@ -138,7 +152,8 @@ if (!isset($_SESSION['user_id'])) {
                                             <nav class="nav nav-pills nav-fill">
                                                 <p class="nav-link disabled">Data Structure and Algorithm</p>
 
-                                                <p class="nav-link disabled arrow"><i class="fa fa-long-arrow-right"></i></p>
+                                                <p class="nav-link disabled arrow"><i
+                                                        class="fa fa-long-arrow-right"></i></p>
                                                 <p class="nav-link disabled ">Binary Tree</p>
                                             </nav>
                                         </div>
@@ -147,7 +162,8 @@ if (!isset($_SESSION['user_id'])) {
                                                 <p class="nav-link disabled">Solutions: 05</p>
                                                 <p class="nav-link disabled">Likes: 19</p>
                                                 <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a href="#">username</a> 3 mins ago</small></p>
+                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
+                                                            href="#">username</a> 3 mins ago</small></p>
                                             </nav>
                                         </div>
                                     </div>
@@ -172,7 +188,8 @@ if (!isset($_SESSION['user_id'])) {
                                             <nav class="nav nav-pills nav-fill">
                                                 <p class="nav-link disabled">Data Structure and Algorithm</p>
 
-                                                <p class="nav-link disabled arrow"><i class="fa fa-long-arrow-right"></i></p>
+                                                <p class="nav-link disabled arrow"><i
+                                                        class="fa fa-long-arrow-right"></i></p>
                                                 <p class="nav-link disabled ">Binary Tree</p>
                                             </nav>
                                         </div>
@@ -181,7 +198,8 @@ if (!isset($_SESSION['user_id'])) {
                                                 <p class="nav-link disabled">Solutions: 05</p>
                                                 <p class="nav-link disabled">Likes: 19</p>
                                                 <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a href="#">username</a> 3 mins ago</small></p>
+                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
+                                                            href="#">username</a> 3 mins ago</small></p>
                                             </nav>
                                         </div>
                                     </div>
@@ -207,7 +225,8 @@ if (!isset($_SESSION['user_id'])) {
                                             <nav class="nav nav-pills nav-fill">
                                                 <p class="nav-link disabled">Data Structure and Algorithm</p>
 
-                                                <p class="nav-link disabled arrow"><i class="fa fa-long-arrow-right"></i></p>
+                                                <p class="nav-link disabled arrow"><i
+                                                        class="fa fa-long-arrow-right"></i></p>
                                                 <p class="nav-link disabled ">Binary Tree</p>
                                             </nav>
                                         </div>
@@ -216,7 +235,8 @@ if (!isset($_SESSION['user_id'])) {
                                                 <p class="nav-link disabled">Solutions: 05</p>
                                                 <p class="nav-link disabled">Likes: 19</p>
                                                 <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a href="#">username</a> 3 mins ago</small></p>
+                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
+                                                            href="#">username</a> 3 mins ago</small></p>
                                             </nav>
                                         </div>
                                     </div>
@@ -229,9 +249,11 @@ if (!isset($_SESSION['user_id'])) {
 
 
                     </div>
-                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                        tabindex="0">
                         Pending </div>
-                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                        tabindex="0">
                         Solved </div>
                 </div>
             </div>
@@ -282,60 +304,78 @@ if (!isset($_SESSION['user_id'])) {
                 </ul>
 
                 <div class="buttons">
-                    <button type="submit" name="btnClicked" class="btn  pblm-post" data-bs-toggle="modal" data-bs-target="#problemPost">Post your problem</button>
-                    <button type="button" class="btn mt-2 ques-up" data-bs-toggle="modal" data-bs-target="#quesitonPaperUpload">
+                    <button type="submit" name="btnClicked" class="btn  pblm-post" data-bs-toggle="modal"
+                        data-bs-target="#problemPost">Post your problem</button>
+                    <button type="button" class="btn mt-2 ques-up ques-upload-btn" data-bs-toggle="modal"
+                        data-bs-target="#quesitonPaperUpload">
                         Upload Question Paper
                     </button>
 
-                    <div class="modal fade" id="quesitonPaperUpload" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="quesitonPaperUpload" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Question Paper</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close ques-upload-cancel-btn"
+                                        data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="signup_form" action="#" autocomplete="off">
+                                    <form class="quesionUploadFrom" enctype="multipart/form-data" action="#"
+                                        autocomplete="off">
                                         <div class="course-id-container mb-2">
                                             <div class="form-floating course-id-automate">
-                                                <input type="text" class="form-control" id="courseId" placeholder="Type a name here..." />
-                                                <label for="courseId">Course ID</label>
+                                                <input type="text" name="course-code" class="form-control"
+                                                    id="courseCode" placeholder="Type a name here..." />
+                                                <label for="courseCode">Course Code</label>
                                             </div>
                                             <ul class="course-search-list"></ul>
                                         </div>
 
-                                        <div class="mb-3">
+                                        <?php
+                                        $current_year = getdate()['year'];
+                                        echo
+                                            '<div class="mb-3">
                                             <p style="margin-bottom:0px;">Select Trimester</p>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="trimesterCode" id="inlineRadio1" value="231">
-                                                <label class="form-check-label" for="inlineRadio1">Spring 2023</label>
+                                                <input class="form-check-input" type="radio" name="trimester-code"
+                                                    id="inlineRadio1" value="' . substr($current_year, 2, 3) . '1">
+                                                <label class="form-check-label" for="inlineRadio1">Spring ' . $current_year . '</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="trimesterCode" id="inlineRadio2" value="232">
-                                                <label class="form-check-label" for="inlineRadio2">Summer 2023</label>
+                                                <input class="form-check-input" type="radio" name="trimester-code"
+                                                    id="inlineRadio2" value="' . substr($current_year, 2, 3) . '2">
+                                                <label class="form-check-label" for="inlineRadio2">Summer ' . $current_year . '</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="trimesterCode" id="inlineRadio3" value="233">
-                                                <label class="form-check-label" for="inlineRadio3">Fall 2023</label>
+                                                <input class="form-check-input" type="radio" name="trimester-code"
+                                                    id="inlineRadio3" value="' . substr($current_year, 2, 3) . '3">
+                                                <label class="form-check-label" for="inlineRadio3">Fall ' . $current_year . '</label>
                                             </div>
-                                        </div>
+                                        </div>';
+
+                                        ?>
 
                                         <div class="mb-3">
                                             <p style="margin-bottom:3px;">Question Paper Type</p>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="questionType" id="midRadio" value="Mid">
+                                                <input class="form-check-input" type="radio" name="exam" id="midRadio"
+                                                    value="Mid">
                                                 <label class="form-check-label" for="midRadio">Mid</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="questionType" id="finalRadio" value="Final">
+                                                <input class="form-check-input" type="radio" name="exam" id="finalRadio"
+                                                    value="Final">
                                                 <label class="form-check-label" for="finalRadio">Final</label>
                                             </div>
                                         </div>
 
 
                                         <div class="mt-2">
-                                            <label class="form-label text-dark" style="margin:0 0 0 1px;" for="profilePic">Select quesiton paper (only pdf)</label>
-                                            <input type="file" class="form-control" id="profilePic" placeholder="">
+                                            <label class="form-label text-dark" style="margin:0 0 0 1px;"
+                                                for="profilePic">Select quesiton paper (only pdf)</label>
+                                            <input type="file" class="form-control" name="qpFile" id="questionFile"
+                                                placeholder="">
                                         </div>
                                         <br>
 
@@ -345,8 +385,10 @@ if (!isset($_SESSION['user_id'])) {
                                         </div> -->
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Upload <i class="fa fa-angle-double-up"></i></button>
+                                            <button type="button" class="btn btn-secondary ques-upload-cancel-btn"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary qp-upload-btn">Upload <i
+                                                    class="fa fa-angle-double-up"></i></button>
                                         </div>
                                     </form>
                                 </div>
@@ -358,25 +400,30 @@ if (!isset($_SESSION['user_id'])) {
 
 
 
-                    <div class="modal fade" id="problemPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="problemPost" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Post your problem</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <form class="" action="#" autocomplete="off">
 
 
                                         <div class="form-floating mb-3">
-                                            <input type="text" name="title" class="form-control" id="problemTitle" placeholder="Name" required>
+                                            <input type="text" name="title" class="form-control" id="problemTitle"
+                                                placeholder="Name" required>
                                             <label for="problemTitle">Title</label>
                                         </div>
                                         <div class="form-floating" style="overflow: hidden;">
-                                            <div class="cover" style="border-radius: 5px;position: absolute; top: 0px; height: 20px; width: calc(100% - 2px); margin: 1px 1px 0; background-color: #fff; z-index: 10;">
+                                            <div class="cover"
+                                                style="border-radius: 5px;position: absolute; top: 0px; height: 20px; width: calc(100% - 2px); margin: 1px 1px 0; background-color: #fff; z-index: 10;">
                                             </div>
-                                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="min-height: 100px;"></textarea>
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea2" style="min-height: 100px;"></textarea>
                                             <label for="floatingTextarea2" style="z-index: 100;">Description</label>
                                         </div>
 
@@ -388,7 +435,8 @@ if (!isset($_SESSION['user_id'])) {
                                             <div class="col-md">
                                                 <div class="course-id-container">
                                                     <div class="form-floating course-id-automate">
-                                                        <input type="text" class="form-control" id="courseId" placeholder="Type a name here..." />
+                                                        <input type="text" class="form-control" id="courseId"
+                                                            placeholder="Type a name here..." />
                                                         <label for="courseId">Course ID</label>
                                                     </div>
                                                     <ul class="course-search-list"></ul>
@@ -396,7 +444,8 @@ if (!isset($_SESSION['user_id'])) {
                                             </div>
                                             <div class="col-md">
                                                 <div class="form-floating">
-                                                    <input type="text" name="title" class="form-control" id="problemTitle" placeholder="Name" required>
+                                                    <input type="text" name="title" class="form-control"
+                                                        id="problemTitle" placeholder="Name" required>
                                                     <label for="problemTitle">Topic Name</label>
                                                 </div>
                                             </div>
@@ -404,9 +453,11 @@ if (!isset($_SESSION['user_id'])) {
 
 
                                         <div class="mt-2">
-                                            <label class="form-label text-dark" style="margin:0 0 0 1px;" for="profilePic">Select the pictures/screenshots (only png, jpg,
+                                            <label class="form-label text-dark" style="margin:0 0 0 1px;"
+                                                for="profilePic">Select the pictures/screenshots (only png, jpg,
                                                 jpeg)</label>
-                                            <input type="file" multiple class="form-control" id="profilePic" placeholder="">
+                                            <input type="file" multiple class="form-control" id="profilePic"
+                                                placeholder="">
                                         </div>
                                         <br>
 
@@ -416,7 +467,8 @@ if (!isset($_SESSION['user_id'])) {
                                         </div> -->
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
                                             <button type="button" class="btn btn-primary">Post</i></button>
                                         </div>
                                     </form>
@@ -434,114 +486,28 @@ if (!isset($_SESSION['user_id'])) {
     </div>
 
     <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="javascript/index.js"></script>
 
 
 
     <script>
-        let names = [
-            "Ayla",
-            "Ayla",
-            "Ayla",
-            "Ayla",
-            "Ayla",
-            "Jake",
-            "Sean",
-            "Henry",
-            "Brad",
-            "Stephen",
-            "Taylor",
-            "Timmy",
-            "Cathy",
-            "John",
-            "Amanda",
-            "Amara",
-            "Sam",
-            "Sandy",
-            "Danny",
-            "Ellen",
-            "Camille",
-            "Chloe",
-            "Emily",
-            "Nadia",
-            "Mitchell",
-            "Harvey",
-            "Lucy",
-            "Amy",
-            "Glen",
-            "Peter",
-        ];
-        //Sort names in ascending order
-        let sortedNames = names.sort();
+    var animateButton = function(e) {
 
-        //reference
-        let input = document.getElementById("courseId");
-        const courseIDList = document.querySelector(".course-search-list");
+        e.preventDefault;
+        //reset animation
+        e.target.classList.remove('animate');
 
-        //Execute function on keyup
-        input.addEventListener("keyup", (e) => {
-            //loop through above array
-            //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
-            removeElements();
-            for (let i of sortedNames) {
-                //convert input to lowercase and compare with each string
-
-                if (
-                    i.toLowerCase().startsWith(input.value.toLowerCase()) &&
-                    input.value != ""
-                ) {
-                    //create li element
-                    let listItem = document.createElement("li");
-                    //One common class name
-                    listItem.classList.add("list-items");
-                    listItem.style.cursor = "pointer";
-                    listItem.setAttribute("onclick", "displayNames('" + i + "')");
-                    //Display matched part in bold
-                    let word = "<b>" + i.substr(0, input.value.length) + "</b>";
-                    word += i.substr(input.value.length);
-                    //display the value in array
-                    listItem.innerHTML = word;
-                    // courseIDList.style.border = "1px solid #86b7fe";
-                    courseIDList.appendChild(listItem);
-                    if (courseIDList.childNodes.length > 0) {
-                        courseIDList.style.border = "1px solid #86b7fe";
-                    }
-                }
-            }
-        });
-
-        function displayNames(value) {
-            input.value = value;
-            removeElements();
-        }
-
-        function removeElements() {
-            //clear all the item
-            let items = document.querySelectorAll(".list-items");
-            items.forEach((item) => {
-                item.remove();
-            });
-            courseIDList.style.border = "none";
-        }
-
-
-
-        var animateButton = function(e) {
-
-            e.preventDefault;
-            //reset animation
+        e.target.classList.add('animate');
+        setTimeout(function() {
             e.target.classList.remove('animate');
+        }, 700);
+    };
 
-            e.target.classList.add('animate');
-            setTimeout(function() {
-                e.target.classList.remove('animate');
-            }, 700);
-        };
+    var bubblyButtons = document.getElementsByClassName("bubbly-button");
 
-        var bubblyButtons = document.getElementsByClassName("bubbly-button");
-
-        for (var i = 0; i < bubblyButtons.length; i++) {
-            bubblyButtons[i].addEventListener('click', animateButton, false);
-        }
+    for (var i = 0; i < bubblyButtons.length; i++) {
+        bubblyButtons[i].addEventListener('click', animateButton, false);
+    }
     </script>
 
 </body>
