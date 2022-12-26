@@ -5,7 +5,7 @@ include_once("config.php");
 
 if (isset($_SESSION['user_id'])) {
     if (isset($_POST['insertCode'])) {
-        // ========================================= Update/Add Course ======================================================
+        // ========================================= Update/Add Course =========================================>
 
 
         if ($_POST['insertCode'] === "takenCourse") {
@@ -23,6 +23,7 @@ if (isset($_SESSION['user_id'])) {
             }
         }
 
+        // ================================== Insert Question Papers ======================================>
 
         if ($_POST['insertCode'] === "insertQP") {
             $studentId = mysqli_escape_string($connection, $_SESSION['user_id']);
@@ -87,6 +88,127 @@ if (isset($_SESSION['user_id'])) {
                 }
             }
         }
+
+
+
+        // ================================= Insert Problem Post's info in db =========================================>
+
+
+
+        if ($_POST['insertCode'] === "insertProblem") {
+            $pPostedBy = mysqli_escape_string($connection, $_SESSION['user_id']);
+
+            $course = explode(" - ", $_POST['course']);
+            $pCourseCode = end($course);
+            $pTopicName = mysqli_escape_string($connection, $_POST['topic']);
+
+            $Ptime = time();
+            $pblmNoSql = mysqli_query($connection, "SELECT * FROM problem_asked ");
+            $problem_id = "P" . mysqli_num_rows($pblmNoSql) . "_" . $Ptime . "_" . $_SESSION['user_id'];
+
+            $pTitle = mysqli_escape_string($connection, $_POST['title']);
+            $pDescription = mysqli_escape_string($connection, $_POST['description']);
+            // echo $pPostedBy . " " . $Ptime . " " . $pTopicName . " " . $pTitle . " " . $pDescription;
+            if (!empty($pTitle) && !empty($pDescription) && !empty($pTopicName) && !empty($pCourseCode)) {
+                if (isset($_FILES['p_img']['name'][0])) {
+                    $totalImg = count($_FILES['p_img']['name']);
+                    $successMove = true;
+                    $p_img_names = array();
+                    for ($i = 0; $i < $totalImg; $i++) {
+                        $p_img_name = $_FILES['p_img']['name'][$i];
+                        $p_img_type = $_FILES['p_img']['type'][$i];
+                        $p_img_tmp_name = $_FILES['p_img']['tmp_name'][$i];
+                        $p_img_explode = explode('.', $p_img_name);
+                        $p_img_ext = end($p_img_explode);
+                        $extentions = ['png', 'jpeg', 'jpg'];
+                        if (in_array($p_img_ext, $extentions, true)) {
+                            $new_img_name = $Ptime . $p_img_name;
+                            if (move_uploaded_file($p_img_tmp_name, "../resources/pblm-imgs/" . $new_img_name)) {
+                                array_push($p_img_names, $new_img_name);
+                            } else {
+                                $successMove = false;
+                            }
+                        }
+                    }
+
+                    if ($successMove) {
+                        $probPostSql = mysqli_query($connection, "INSERT INTO problem_asked 
+                                        (problem_id,course_code,topic_name,title,description, views, student_id)
+                                        VALUES ('{$problem_id}','{$pCourseCode}','{$pTopicName}','{$pTitle}','{$pDescription}', 0,'{$pPostedBy}')");
+                        if ($probPostSql) {
+                            foreach ($p_img_names as $x) {
+                                $pblmImgSql = mysqli_query($connection, "INSERT INTO pblm_img
+                                                (img_name,problem_id) VALUES ('{$x}','{$problem_id}')");
+                            }
+                            echo "success";
+                        }
+                    } else {
+                        echo "unsuccessful Move";
+                    }
+                }
+            }
+        }
+
+
+
+        // ================================= Insert Answer info in db =========================================>
+
+
+
+
+
+        if ($_POST['insertCode'] === "insertAnswer") {
+            $aPostedBy = mysqli_escape_string($connection, $_SESSION['user_id']);
+            $ans_pblm_id = mysqli_escape_string($connection, $_POST['problem_id']);
+            $aDescription = mysqli_escape_string($connection, $_POST['description']);
+
+            $solutionNoSql = mysqli_query($connection, "SELECT * FROM answer");
+            $answer_id = $_POST['problem_id'] . "_" . "S" . mysqli_num_rows($solutionNoSql);
+
+            if (!empty($aDescription)) {
+                if (isset($_FILES['solution_img']['name'][0])) {
+                    $totalImg = count($_FILES['solution_img']['name']);
+                    $successMove = true;
+                    $p_img_names = array();
+                    for ($i = 0; $i < $totalImg; $i++) {
+                        $p_img_name = $_FILES['solution_img']['name'][$i];
+                        $p_img_type = $_FILES['solution_img']['type'][$i];
+                        $p_img_tmp_name = $_FILES['solution_img']['tmp_name'][$i];
+                        $p_img_explode = explode('.', $p_img_name);
+                        $p_img_ext = end($p_img_explode);
+                        $extentions = ['png', 'jpeg', 'jpg'];
+                        if (in_array($p_img_ext, $extentions, true)) {
+                            $new_img_name = time() . $p_img_name;
+                            if (move_uploaded_file($p_img_tmp_name, "../resources/pblm-imgs/" . $new_img_name)) {
+                                array_push($p_img_names, $new_img_name);
+                            } else {
+                                $successMove = false;
+                            }
+                        }
+                    }
+
+                    if ($successMove) {
+                        $ansPostSql = mysqli_query($connection, "INSERT INTO answer 
+                                        (answer_id,description, problem_id, posted_by)
+                                        VALUES ('{$answer_id}','{$aDescription}','{$ans_pblm_id}','{$aPostedBy}')");
+                        if ($ansPostSql) {
+                            foreach ($p_img_names as $x) {
+                                $ansImgSql = mysqli_query($connection, "INSERT INTO ans_img
+                                            (img_name,ans_id) VALUES ('{$x}','{$answer_id}')");
+                            }
+                            echo $_POST['problem_id'];
+                            // header("location: ../problem_panel.php");
+                        }
+                    } else {
+                        echo "unsuccessful Move";
+                    }
+                }
+            }
+        }
+
+
+
+
     }
 
 }

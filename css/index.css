@@ -201,7 +201,7 @@ body{
     position: absolute;
     top: 50px;
     width: 100%;
-    z-index: 1;
+    z-index: 1000;
 }
 
 .rated_students_list .buttons .list-items {

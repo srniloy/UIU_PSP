@@ -93,158 +93,86 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="tab-pane fade show active post-activity-pane" id="home-tab-pane" role="tabpanel"
                         aria-labelledby="home-tab" tabindex="0">
                         <div class="post-container">
-
-
                             <div class="posts">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <a href="problem_panel.php" class="card-title">
-                                            <h5>How to find command output to echo without variable
-                                                assignment, in
-                                                one line ?</h5>
-                                        </a>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer. This is
-                                            a
-                                            wider card with
-                                            supporting text below as a natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                        <div class="related-topics">
-                                            <p>Related:</p>
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Data Structure and Algorithm</p>
 
-                                                <p class="nav-link disabled arrow"><i
-                                                        class="fa fa-long-arrow-right"></i></p>
-                                                <p class="nav-link disabled ">Binary Tree</p>
-                                            </nav>
-                                        </div>
-                                        <div class="card-bar">
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Solutions: 05</p>
-                                                <p class="nav-link disabled">Likes: 19</p>
-                                                <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
-                                                            href="#">username</a> 3 mins ago</small></p>
-                                            </nav>
-                                        </div>
+
+                                <div class="card" aria-hidden="true">
+                                    <div class="card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-12 h4 rounded"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-12 h1 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-5" style="visibility:hidden;"></span>
+                                            <span class="placeholder col-2 h5 mt-2  rounded"></span>
+                                            <span class="placeholder col-2 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-4 h5 mt-2 rounded"
+                                                style="margin-left:10px"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" aria-hidden="true">
+                                    <div class="card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-12 h4 rounded"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-12 h1 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-5" style="visibility:hidden;"></span>
+                                            <span class="placeholder col-2 h5 mt-2  rounded"></span>
+                                            <span class="placeholder col-2 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-4 h5 mt-2 rounded"
+                                                style="margin-left:10px"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" aria-hidden="true">
+                                    <div class="card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-12 h4 rounded"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-12 h1 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-5" style="visibility:hidden;"></span>
+                                            <span class="placeholder col-2 h5 mt-2  rounded"></span>
+                                            <span class="placeholder col-2 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-4 h5 mt-2 rounded"
+                                                style="margin-left:10px"></span>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="card" aria-hidden="true">
+                                    <div class="card-body">
+                                        <h5 class="card-title placeholder-glow">
+                                            <span class="placeholder col-12 h4 rounded"></span>
+                                        </h5>
+                                        <p class="card-text placeholder-glow">
+                                            <span class="placeholder col-12 h1 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-5" style="visibility:hidden;"></span>
+                                            <span class="placeholder col-2 h5 mt-2  rounded"></span>
+                                            <span class="placeholder col-2 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                            <span class="placeholder col-4 h5 mt-2 rounded"
+                                                style="margin-left:10px"></span>
+                                        </p>
                                     </div>
                                 </div>
 
 
-                                <div class="card">
-                                    <div class="card-body">
-                                        <a href="problem_panel.php" class="card-title">
-                                            <h5>How to find command output to echo without variable
-                                                assignment, in
-                                                one line ?</h5>
-                                        </a>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer. This is
-                                            a
-                                            wider card with
-                                            supporting text below as a natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                        <div class="related-topics">
-                                            <p>Related:</p>
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Data Structure and Algorithm</p>
-
-                                                <p class="nav-link disabled arrow"><i
-                                                        class="fa fa-long-arrow-right"></i></p>
-                                                <p class="nav-link disabled ">Binary Tree</p>
-                                            </nav>
-                                        </div>
-                                        <div class="card-bar">
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Solutions: 05</p>
-                                                <p class="nav-link disabled">Likes: 19</p>
-                                                <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
-                                                            href="#">username</a> 3 mins ago</small></p>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card">
-                                    <div class="card-body">
-                                        <a href="problem_panel.php" class="card-title">
-                                            <h5>How to find command output to echo without variable
-                                                assignment, in
-                                                one line ?</h5>
-                                        </a>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer. This is
-                                            a
-                                            wider card with
-                                            supporting text below as a natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                        <div class="related-topics">
-                                            <p>Related:</p>
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Data Structure and Algorithm</p>
-
-                                                <p class="nav-link disabled arrow"><i
-                                                        class="fa fa-long-arrow-right"></i></p>
-                                                <p class="nav-link disabled ">Binary Tree</p>
-                                            </nav>
-                                        </div>
-                                        <div class="card-bar">
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Solutions: 05</p>
-                                                <p class="nav-link disabled">Likes: 19</p>
-                                                <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
-                                                            href="#">username</a> 3 mins ago</small></p>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
 
 
-                                <div class="card">
-                                    <div class="card-body">
-                                        <a href="problem_panel.php" class="card-title">
-                                            <h5>How to find command output to echo without variable
-                                                assignment, in
-                                                one line ?</h5>
-                                        </a>
-                                        <p class="card-text">This is a wider card with supporting text below as a
-                                            natural
-                                            lead-in to additional content. This content is a little bit longer. This is
-                                            a
-                                            wider card with
-                                            supporting text below as a natural
-                                            lead-in to additional content. This content is a little bit longer.</p>
-                                        <div class="related-topics">
-                                            <p>Related:</p>
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Data Structure and Algorithm</p>
-
-                                                <p class="nav-link disabled arrow"><i
-                                                        class="fa fa-long-arrow-right"></i></p>
-                                                <p class="nav-link disabled ">Binary Tree</p>
-                                            </nav>
-                                        </div>
-                                        <div class="card-bar">
-                                            <nav class="nav nav-pills nav-fill">
-                                                <p class="nav-link disabled">Solutions: 05</p>
-                                                <p class="nav-link disabled">Likes: 19</p>
-                                                <p class="nav-link disabled">Views: 27</p>
-                                                <p class="card-text nav-link"><small class="text-muted">Posted by <a
-                                                            href="#">username</a> 3 mins ago</small></p>
-                                            </nav>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-
-
-
                         </div>
 
 
@@ -406,59 +334,54 @@ if (!isset($_SESSION['user_id'])) {
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Post your problem</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    <button type="button" class="btn-close pblm-post-cancel-btn" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="" action="#" autocomplete="off">
+                                    <form class="problem-post-form" enctype="multipart/form-data" action="#"
+                                        autocomplete="off">
 
+                                        <div class="course-id-container">
+                                            <div class="form-floating course-id-automate">
+                                                <input type="text" name="course" class="form-control" id="courseCode1"
+                                                    placeholder="Type a name here..." />
+                                                <label for="courseCode1">Enter the Course (your problem is related
+                                                    to)</label>
+                                            </div>
+                                            <ul class="course-search-list prob-post-search-list"></ul>
+                                        </div>
 
-                                        <div class="form-floating mb-3">
+                                        <div class="form-floating mt-2">
+                                            <input type="text" name="topic" class="form-control" id="problemTitle"
+                                                placeholder="Name" required>
+                                            <label for="problemTitle">Topic Name</label>
+                                        </div>
+
+                                        <div class="form-floating mt-2">
                                             <input type="text" name="title" class="form-control" id="problemTitle"
                                                 placeholder="Name" required>
                                             <label for="problemTitle">Title</label>
                                         </div>
-                                        <div class="form-floating" style="overflow: hidden;">
+                                        <div class="form-floating mt-2" style="overflow: hidden;">
                                             <div class="cover"
                                                 style="border-radius: 5px;position: absolute; top: 0px; height: 20px; width: calc(100% - 2px); margin: 1px 1px 0; background-color: #fff; z-index: 10;">
                                             </div>
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                id="floatingTextarea2" style="min-height: 100px;"></textarea>
+                                            <textarea class="form-control" name="description"
+                                                placeholder="Leave a comment here" id="floatingTextarea2"
+                                                style="min-height: 100px;"></textarea>
                                             <label for="floatingTextarea2" style="z-index: 100;">Description</label>
                                         </div>
-
-
-                                        <p class="mt-3 mb-1">Enter the course id and the topic name, which your problem
-                                            is related to:</p>
-
-                                        <div class="row g-2">
-                                            <div class="col-md">
-                                                <div class="course-id-container">
-                                                    <div class="form-floating course-id-automate">
-                                                        <input type="text" class="form-control" id="courseId"
-                                                            placeholder="Type a name here..." />
-                                                        <label for="courseId">Course ID</label>
-                                                    </div>
-                                                    <ul class="course-search-list"></ul>
-                                                </div>
-                                            </div>
-                                            <div class="col-md">
-                                                <div class="form-floating">
-                                                    <input type="text" name="title" class="form-control"
-                                                        id="problemTitle" placeholder="Name" required>
-                                                    <label for="problemTitle">Topic Name</label>
-                                                </div>
-                                            </div>
-                                        </div>
-
 
                                         <div class="mt-2">
                                             <label class="form-label text-dark" style="margin:0 0 0 1px;"
                                                 for="profilePic">Select the pictures/screenshots (only png, jpg,
                                                 jpeg)</label>
-                                            <input type="file" multiple class="form-control" id="profilePic"
-                                                placeholder="">
+                                            <input type="file" name="p_img[]" multiple class="form-control"
+                                                id="profilePic" placeholder="">
                                         </div>
+
+
+
                                         <br>
 
                                         <!-- <div class="buttons">
@@ -467,9 +390,10 @@ if (!isset($_SESSION['user_id'])) {
                                         </div> -->
 
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
+                                            <button type="button" class="btn btn-secondary pblm-post-cancel-btn"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Post</i></button>
+                                            <button type="button"
+                                                class="btn btn-primary problem-post-submit-btn">Post</i></button>
                                         </div>
                                     </form>
                                 </div>
@@ -492,19 +416,13 @@ if (!isset($_SESSION['user_id'])) {
 
     <script>
     var animateButton = function(e) {
-
-        e.preventDefault;
-        //reset animation
-        e.target.classList.remove('animate');
-
+        e.preventDefault; //reset animation             e.target.classList.remove('animate');
         e.target.classList.add('animate');
         setTimeout(function() {
             e.target.classList.remove('animate');
         }, 700);
     };
-
     var bubblyButtons = document.getElementsByClassName("bubbly-button");
-
     for (var i = 0; i < bubblyButtons.length; i++) {
         bubblyButtons[i].addEventListener('click', animateButton, false);
     }

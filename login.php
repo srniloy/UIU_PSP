@@ -23,13 +23,15 @@
                 <br>
             </div>
 
-            <form class="login_form" action="#">
+            <form class="login_form" autocomplete="off" action="#">
                 <div class="form-floating mb-3">
-                    <input type="tel" name="student_id" class="form-control" id="floatingInput" placeholder="Student Id" required>
+                    <input type="tel" name="student_id" class="form-control" id="floatingInput" placeholder="Student Id"
+                        required>
                     <label for="floatingInput">Student Id</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control" id="floatingPassword"
+                        placeholder="Password" required>
                     <label for="floatingPassword">Password</label>
 
                 </div>

@@ -1,3 +1,13 @@
+<?php
+session_start();
+include_once 'php/config.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("location: login.php");
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,28 +30,32 @@
                 <a href="index.php"><i class="fa fa-arrow-left"></i></a>
             </div>
             <div class="card-body">
+
+                <?php
+                $getPblmPostSql = mysqli_query($connection, "SELECT * FROM problem_asked WHERE problem_id = '{$_GET['post_id']}'");
+                $pblmPostInfo = mysqli_fetch_assoc($getPblmPostSql);
+                $pCourseTitle = mysqli_fetch_assoc(mysqli_query($connection, "SELECT course_title FROM course WHERE course.course_code = '{$pblmPostInfo['course_code']}'"));
+                ?>
+
                 <div class="problem-details">
-                    <h4 class="card-title">How to find command output to echo without variable
-                        assignment, in
-                        one line ?</h4>
-                    <p class="card-text">This is a wider card with supporting text below as a natural
-                        lead-in to additional content. This content is a little bit longer. This is a
-                        wider card with
-                        supporting text below as a natural
-                        lead-in to additional content. This content is a little bit longer.
-                    </p>
+                    <h4 class="card-title"><?php echo $pblmPostInfo['title'] ?></h4>
+                    <p class="card-text"><?php echo $pblmPostInfo['description'] ?></p>
                     <div class="images">
-                        <img class="img-fluid" src="resources/prob-img/prob-img-1.png" alt="">
-                        <img class="img-fluid" src="resources/prob-img/prob-img-2.png" alt="">
-                        <img class="img-fluid" src="resources/prob-img/prob-img-3.png" alt="">
+                        <?php
+                        $pblm_imgSql = mysqli_query($connection, "SELECT * FROM pblm_img WHERE pblm_img.problem_id  = '{$_GET['post_id']}'");
+                        while ($piRow = mysqli_fetch_assoc($pblm_imgSql)) {
+                            echo '<img class="img-fluid" src="resources/pblm-imgs/' . $piRow['img_name'] . '" alt="">';
+                        }
+
+                        ?>
                     </div>
                 </div>
                 <div class="related-topics">
                     <ul class="nav nav-pills nav-fill">
                         <li>Related:</li>
-                        <li class="course">Data Structure and Algorithm</li>
+                        <li class="course"><?php echo $pCourseTitle['course_title'] ?></li>
                         <li class="arrow"><i class="fa fa-long-arrow-right"></i></li>
-                        <li class="topic">Binary Tree</li>
+                        <li class="topic"><?php echo $pblmPostInfo['topic_name'] ?></li>
                     </ul>
                     <div class="menu">
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
@@ -99,10 +113,29 @@
                             <i class="fa fa-thumbs-o-down"></i>
                             08
                         </li>
-                        <li>Views: 27</li>
+                        <li>Views: <?php echo $pblmPostInfo['views'] ?></li>
                         <li>Solutions: 03</li>
                     </ul>
-                    <p><small class="text-muted">Posted by <a href="#">username</a> 3 mins ago</small></p>
+                    <p><small class="text-muted">Posted by <a href="#">
+                                <?php
+                                $userName = mysqli_fetch_assoc(mysqli_query($connection, "SELECT name FROM users WHERE users.student_id   = '{$pblmPostInfo['student_id']}'"));
+
+                                echo $userName['name'] . " </a>";
+                                $ftime = mysqli_fetch_assoc(mysqli_query($connection, "SELECT TIMEDIFF(CURRENT_TIMESTAMP(),'{$pblmPostInfo['last_modified']}') as difTime"));
+                                $splitedTime = explode(":", $ftime['difTime']);
+                                if ($splitedTime[0] == "00" && $splitedTime[1] == "00") {
+                                    echo intval($splitedTime[2]) . "sec ago";
+                                } else if ($splitedTime[0] == "00" && $splitedTime[1] != "00") {
+                                    echo intval($splitedTime[1]) . "min ago";
+                                } else if (intval($splitedTime[0]) < 24) {
+                                    echo intval($splitedTime[0]) . "h ago";
+                                } else {
+                                    echo intval($splitedTime[0]) / 24 . "days ago";
+                                }
+                                // echo $ftime['difTime'] . "mins ago";
+                                
+                                ?>
+                        </small></p>
                 </div>
                 <div class="comment-section">
                     <div class="comment-texts">
@@ -157,32 +190,28 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="signup_form" action="#" autocomplete="off">
-
-
-                                        <div class="form-floating mb-3">
-                                            <input type="text" name="title" class="form-control" id="problemTitle"
-                                                placeholder="Name" required>
-                                            <label for="problemTitle">Title</label>
-                                        </div>
+                                    <form class="answer_post_form" enctype="multipart/form-data" action="#"
+                                        autocomplete="off">
+                                        <?php
+                                        echo '<input class="visually-hidden" type="text" name="problem_id"
+                                        value="' . $_GET['post_id'] . '">';
+                                        ?>
                                         <div class="form-floating" style="overflow: hidden;">
                                             <div class="cover"
-                                                style="border-radius: 5px;position: absolute; top: 0px; height: 20px; width: calc(100% - 2px); margin: 1px 1px 0; background-color: #fff; z-index: 10;">
+                                                style="border-radius: 5px;position: absolute; top: 0px; height: 25px; width: calc(100% - 2px); margin: 1px 1px 0; background-color: #fff; z-index: 10;">
                                             </div>
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                id="floatingTextarea2" style="min-height: 100px;"></textarea>
-                                            <label for="floatingTextarea2" style="z-index: 100;">Description</label>
+                                            <textarea class="form-control" name="description"
+                                                placeholder="Leave a comment here" id="floatingTextarea2"
+                                                style="min-height: 150px;"></textarea>
+                                            <label for="floatingTextarea2" style="z-index: 100;">Write you answer
+                                                here...</label>
                                         </div>
-
-
-
-
                                         <div class="mt-2">
                                             <label class="form-label text-dark" style="margin:0 0 0 1px;"
                                                 for="profilePic">Select the pictures/screenshots (only png, jpg,
                                                 jpeg)</label>
-                                            <input type="file" multiple class="form-control" id="profilePic"
-                                                placeholder="">
+                                            <input type="file" multiple name="solution_img[]" class="form-control"
+                                                id="profilePic" placeholder="">
                                         </div>
                                         <br>
 
@@ -196,7 +225,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn custom-btn-sec"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn custom-btn">Post</button>
+                                    <button type="button" class="btn custom-btn answer-post-btn">Post</button>
                                 </div>
                             </div>
                         </div>
@@ -598,6 +627,7 @@
 
 
     <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="javascript/problem_panel.js"></script>
 </body>
 
 </html>

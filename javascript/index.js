@@ -40,8 +40,11 @@ qpUploadBtn.onclick = ()=>{
 
 // -------------------------------------- keyup suggestion -------------------------------------
 
+
+// ============ for question paper upload ====>
+
 const addCourseBtn = document.querySelector(".ques-upload-btn"),
-addCourseCancelBtn = document.querySelector(".ques-upload-cancel-btn");
+addCourseCancelBtn = document.querySelectorAll(".ques-upload-cancel-btn");
 let courses;
 let courseCodes =[];
 
@@ -70,11 +73,14 @@ addCourseBtn.onclick = ()=>{ // -------------- Getting All course's info from da
 let input = document.getElementById("courseCode");
 const courseIDList = document.querySelector(".course-search-list");
 
-addCourseCancelBtn.onclick=()=>{
-    courseCodes = [];
-    quesionUploadFrom.reset();
-    removeElements();
-}
+
+addCourseCancelBtn.forEach(element => {
+    element.onclick=()=>{
+        courseCodes = [];
+        quesionUploadFrom.reset();
+        removeElements();
+    }
+});
 //Execute function on keyup
 input.addEventListener("keyup", (e) => {
 
@@ -120,5 +126,149 @@ function removeElements() {
     courseIDList.style.border = "none";
 }
 
+// ============================== for problem Post ===================>
 
 
+
+const pblmPostBtn = document.querySelector(".pblm-post"),
+pblmPostCancelBtn = document.querySelectorAll(".pblm-post-cancel-btn"),
+pblmPostForm = document.querySelector(".problem-post-form");
+let coursesPP;
+let courseCodesPP =[];
+
+pblmPostBtn.onclick = ()=>{ // -------------- Getting All course's info from database as object.
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/getData.php", true);
+    xhr.onload = ()=>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = xhr.response;
+                coursesPP = JSON.parse(data);
+                for(let i=0; i<Object.keys(coursesPP).length; i++){
+                    courseCodesPP.push(coursesPP[i]["course_title"]+" - "+coursesPP[i]["course_code"]); // taking only course codes
+                }
+                console.log(coursesPP);
+            }
+        }
+    }
+    let Data = "t3t";
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("getCode="+ Data);
+
+    
+}
+
+
+let inputPP = document.getElementById("courseCode1");
+const courseIDListPP = document.querySelector(".prob-post-search-list");
+
+pblmPostCancelBtn.forEach(element => {
+    element.onclick=()=>{
+        courseCodesPP = [];
+        pblmPostForm.reset();
+        removeElementsPP();
+    }
+});
+//Execute function on keyup
+inputPP.addEventListener("keyup", (e) => {
+
+    console.log("xxxx");
+
+    removeElementsPP(); //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
+    for (let i of courseCodesPP) {
+        //convert input to lowercase and compare with each string
+
+        if (
+            i.toLowerCase().includes(inputPP.value.toLowerCase()) &&
+            inputPP.value != ""
+        ) {
+            //create li element
+            let listItem = document.createElement("li");
+            //One common class name
+            listItem.classList.add("list-items");
+            listItem.style.cursor = "pointer";
+            listItem.setAttribute("onclick", "displayNamesPP('" + i.trim() + "')");
+            //display the value in array
+            listItem.innerHTML = i;
+            courseIDListPP.appendChild(listItem);
+            if (courseIDListPP.childNodes.length > 0) {
+                courseIDListPP.style.border = "1px solid #86b7fe";
+            }
+        }
+    }
+});
+
+function displayNamesPP(value) {
+    inputPP.value = value;
+    removeElementsPP();
+}
+
+function removeElementsPP() {
+    //clear all the item
+    let items = document.querySelectorAll(".list-items");
+    items.forEach((item) => {
+        item.remove();
+    });
+    courseIDListPP.style.border = "none";
+}
+
+// ---------------------------------------------------------Problem Post-------------------------------------------------------->
+
+
+
+
+const pblmPostSubmitBtn = document.querySelector(".problem-post-submit-btn");
+//  pblmPostForm initialize before... check^
+
+pblmPostForm.onsubmit = (e)=>{
+    e.preventDefalut();
+}
+pblmPostSubmitBtn.onclick = ()=>{
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST","php/insert.php",true);
+    xhr.onload = ()=>{
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if(xhr.status === 200){
+                let data = xhr.response;
+                if(data == "success"){
+                    location.href = "index.php";
+                }
+            }
+        }
+    }
+    let formData = new FormData(pblmPostForm);
+    formData.append("insertCode","insertProblem");
+    xhr.send(formData);
+}
+
+
+// ---------------------------------------------------------All post fetch-------------------------------------------------------->
+
+
+const allPostContainer = document.querySelector(".user_activity .posts");
+
+
+
+setInterval(()=>{
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/getData.php", true);
+    xhr.onload = ()=>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = "";
+                data = xhr.response;
+                console.log(data);
+                if(data != ""){
+                    allPostContainer.innerHTML = data;
+                }
+            }
+        }
+    }
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("getCode=getPosts");
+
+
+
+
+},1000);

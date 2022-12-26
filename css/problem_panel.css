@@ -89,8 +89,10 @@ body::-webkit-scrollbar-thumb
 }
 .profile .card-body .images{
     overflow: auto;
-    min-height: 450px;
-    height: 50vh;
+    max-height: 450px;
+    width: max-content;
+    max-width: 100%;
+    height: max-content;
     border: 3px solid #7a7a7a;
     border-radius: 5px;
 }
