@@ -8,7 +8,6 @@
 }
 body{
     overflow: hidden;
-
 }
 .custom-btn{
     font-size: 12px;
@@ -80,7 +79,7 @@ body{
     width: 1400px;
     margin-top: 20px;
     box-shadow: 10px 10px 50px 5px #000000;
-    background-color: #000000;
+    background-color: #000;
     display: flex;
     border-radius: 10px;
     padding: 20px 10vh;
@@ -90,13 +89,14 @@ body{
     flex: 4;
     padding: 0px 2vh;
     border-radius: 5px;
-    background-color: #00000035;
+    /* background-color: #00000035; */
     height: 100%;
 }
 .user_dashboard .user_activity .post-container{
     height: 100%;
     margin-top: 10px;
-    padding-right: 5px;
+    padding-right: 15px;
+    padding-left: 10px;
     overflow-y: auto;
 }
 .post-container::-webkit-scrollbar-track
@@ -136,8 +136,16 @@ body{
 }
 .user_dashboard .user_activity .card{
     margin-bottom: 10px;
+    /* background-color: rgba(255, 255, 255, 0.469); */
     background-color: rgba(14, 14, 14, 0.793);
 }
+.user_dashboard .user_activity .pblm-post-card{
+    transition: all 0.3s;
+}
+.user_dashboard .user_activity .pblm-post-card:hover{
+    transform: scale(1.02);
+}
+
 
 .user_dashboard .user_activity .card:last-child{
     margin-bottom: 0;
@@ -254,12 +262,6 @@ body{
         height: 87%;
         width: 1100px;
         margin-top: 10px;
-        box-shadow: 10px 10px 50px 5px #000000;
-        background-color: #000000;
-        display: flex;
-        border-radius: 10px;
-        padding: 20px 10vh;
-        overflow: hidden;
     }
 }
 

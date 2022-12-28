@@ -206,8 +206,45 @@ if (isset($_SESSION['user_id'])) {
             }
         }
 
+        // ========================================= insert problem's comment =========================================>
 
 
+        if ($_POST['insertCode'] === "insertPComment" && isset($_SESSION['current_pblm_id'])) {
+            $studentId = mysqli_escape_string($connection, $_SESSION['user_id']);
+            $cmntTxt = mysqli_escape_string($connection, $_POST['cmntTxt']);
+            $currentPblmId = mysqli_escape_string($connection, $_SESSION['current_pblm_id']);
+
+            if ($cmntTxt != "") {
+                $sql = mysqli_query($connection, "INSERT INTO p_comment (comment_text, problem_id, student_id)
+                                            VALUES ('{$cmntTxt}','{$currentPblmId}','{$studentId}')");
+                if ($sql) {
+                    echo "success";
+                } else {
+                    echo "something wrong";
+                }
+            }
+
+        }
+
+
+        // ========================================= insert answer's comment =========================================>
+
+
+        if ($_POST['insertCode'] === "insertAComment") {
+            $studentId = mysqli_escape_string($connection, $_SESSION['user_id']);
+            $cmntTxt = mysqli_escape_string($connection, $_POST['aCommentTxt']);
+            $currentAnswerId = mysqli_escape_string($connection, $_POST['answer_id']);
+
+            if ($cmntTxt != "") {
+                $sql = mysqli_query($connection, "INSERT INTO a_comment (comment_text, answer_id, student_id)
+                                            VALUES ('{$cmntTxt}','{$currentAnswerId}','{$studentId}')");
+                if ($sql) {
+                    echo "success";
+                } else {
+                    echo "something wrong";
+                }
+            }
+        }
 
     }
 

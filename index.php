@@ -368,7 +368,7 @@ if (!isset($_SESSION['user_id'])) {
                                             </div>
                                             <textarea class="form-control" name="description"
                                                 placeholder="Leave a comment here" id="floatingTextarea2"
-                                                style="min-height: 100px;"></textarea>
+                                                style="min-height: 100px; white-space: pre-wrap" ;></textarea>
                                             <label for="floatingTextarea2" style="z-index: 100;">Description</label>
                                         </div>
 

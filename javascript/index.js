@@ -230,6 +230,7 @@ pblmPostSubmitBtn.onclick = ()=>{
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if(xhr.status === 200){
                 let data = xhr.response;
+                console.log(data);
                 if(data == "success"){
                     location.href = "index.php";
                 }
@@ -247,7 +248,7 @@ pblmPostSubmitBtn.onclick = ()=>{
 
 const allPostContainer = document.querySelector(".user_activity .posts");
 
-
+let pblmPostsLength = -1;
 
 setInterval(()=>{
 
@@ -258,9 +259,12 @@ setInterval(()=>{
             if(xhr.status === 200){
                 let data = "";
                 data = xhr.response;
-                console.log(data);
-                if(data != ""){
-                    allPostContainer.innerHTML = data;
+                let dataSplit = data.split("*#");
+                let ppNums = parseInt(dataSplit[0]);
+                console.log(dataSplit[0]);
+                if(pblmPostsLength != ppNums){
+                    allPostContainer.innerHTML = dataSplit[1];
+                    pblmPostsLength = ppNums;
                 }
             }
         }

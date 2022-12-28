@@ -212,6 +212,9 @@ body::-webkit-scrollbar-thumb
     font-size: 12px;
     border-bottom: 1px solid #121212;
 }
+.comment-section .individual-comment:last-child{
+    margin-bottom: 10px;
+}
 .comment-section .commented-by{
     margin-left: 5px;
     color: #3c3c3c;
@@ -228,11 +231,10 @@ body::-webkit-scrollbar-thumb
     background-color: transparent;
     font-size: 11px;
     border-color: #121212;
-    margin-top: 10px;
     color: #adadad;
 }
 .comment-section .comment-input button{
-    padding: 10px 4px 0 4px;
+    padding: 0px 4px 0 4px;
     background-color: transparent;
     margin-left: 5px;
     border: none;
