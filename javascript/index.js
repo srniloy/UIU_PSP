@@ -71,7 +71,7 @@ addCourseBtn.onclick = ()=>{ // -------------- Getting All course's info from da
 
 
 let input = document.getElementById("courseCode");
-const courseIDList = document.querySelector(".course-search-list");
+const courseIDList = document.querySelector(".pp-course-search-list");
 
 
 addCourseCancelBtn.forEach(element => {
@@ -135,6 +135,7 @@ pblmPostCancelBtn = document.querySelectorAll(".pblm-post-cancel-btn"),
 pblmPostForm = document.querySelector(".problem-post-form");
 let coursesPP;
 let courseCodesPP =[];
+console.log(pblmPostBtn);
 
 pblmPostBtn.onclick = ()=>{ // -------------- Getting All course's info from database as object.
     let xhr = new XMLHttpRequest();
@@ -144,6 +145,7 @@ pblmPostBtn.onclick = ()=>{ // -------------- Getting All course's info from dat
             if(xhr.status === 200){
                 let data = xhr.response;
                 coursesPP = JSON.parse(data);
+                console.log(data);
                 for(let i=0; i<Object.keys(coursesPP).length; i++){
                     courseCodesPP.push(coursesPP[i]["course_title"]+" - "+coursesPP[i]["course_code"]); // taking only course codes
                 }
@@ -172,7 +174,6 @@ pblmPostCancelBtn.forEach(element => {
 //Execute function on keyup
 inputPP.addEventListener("keyup", (e) => {
 
-    console.log("xxxx");
 
     removeElementsPP(); //Initially remove all elements ( so if user erases a letter or adds new letter then clean previous outputs)
     for (let i of courseCodesPP) {
@@ -265,6 +266,7 @@ setInterval(()=>{
                 if(pblmPostsLength != ppNums){
                     allPostContainer.innerHTML = dataSplit[1];
                     pblmPostsLength = ppNums;
+                    postTabLink();
                 }
             }
         }
@@ -276,3 +278,20 @@ setInterval(()=>{
 
 
 },1000);
+
+
+
+// ========================= Normal Design Codes ===============================>
+
+
+function postTabLink(){
+    const pPostTab = document.querySelectorAll(".user_dashboard .user_activity .card");
+
+
+    pPostTab.forEach(element => {
+        element.onclick = ()=>{
+            const pblmId = element.querySelector(".pblm_id").innerHTML;
+            location.href = "problem_panel.php?post_id="+pblmId;
+        }
+    });
+}

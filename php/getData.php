@@ -16,6 +16,7 @@ if (isset($_SESSION['user_id'])) {
         echo json_encode($all);
     }
 
+    // ================================================= Getting All Posts From Database ===========================>
 
     if ($_POST['getCode'] === "getPosts") {
         $getPblmPostsSql = mysqli_query($connection, "SELECT * FROM problem_asked ORDER BY last_modified desc");
@@ -32,6 +33,7 @@ if (isset($_SESSION['user_id'])) {
                 
                     <div class="card pblm-post-card">
                         <div class="card-body">
+                            <p class="visually-hidden pblm_id">' . $pblmDetail['problem_id'] . '</p>
                             <a href="problem_panel.php?post_id=' . $pblmDetail['problem_id'] . '" class="card-title">
                                 <h5>' . $pblmDetail['title'] . '</h5>
                             </a>

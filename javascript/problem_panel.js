@@ -58,7 +58,7 @@ setInterval(()=>{
                     setAnswerCommentPostData();
                     fetchAnswerComment();
                 }else if(ppNums == 0){
-                    allAnswerContainer.innerHTML = "There is no answer has been posted yet";
+                    allAnswerContainer.innerHTML = '<p style="margin-top: 30px;">There is no answer has been posted yet </p>';
                 }
             }
         }
