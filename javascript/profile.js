@@ -261,11 +261,11 @@ qpUploadBtn.onclick = ()=>{
 // ============================= Normal design codes ========================>
 
 
-const courseViewBtn = document.querySelectorAll(".course_container .view-qp");
+const courseViewBtn = document.querySelectorAll(".course_container .card-header");
 
 courseViewBtn.forEach(element => {
     element.onclick = ()=>{
-        let i = element.querySelector("i");
+        let i = element.querySelector(".view-qp i");
         if(i.classList.contains("fa-angle-down")){
             i.classList.remove("fa-angle-down");
             i.classList.add("fa-angle-up");
@@ -318,3 +318,13 @@ progressBar.forEach((element,i) => {
     }, speed);
 });
 //#4d5bf9 #cadcff
+
+
+
+
+// =================== tooltips code ===============>
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })

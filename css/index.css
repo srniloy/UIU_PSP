@@ -42,9 +42,10 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../resources/bg9.jpg);
+    background: url(../resources/bg.png);
+    /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../resources/bg9.jpg); */
     /* background-color: rgb(24, 23, 23); */
-
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -64,7 +65,7 @@ body {
 
 .user_dashboard .top_bar {
     width: 100%;
-    background-color: #00000094;
+    background-color: #1e2022;
     backdrop-filter: blur(1px);
     border-radius: 5px;
 }
@@ -86,7 +87,6 @@ body {
     display: flex;
     align-items: center;
     height: 40px;
-    background-color: #06548b;
     border-radius: 5px;
 }
 
@@ -95,7 +95,6 @@ body {
     color: white;
     display: flex;
     align-items: center;
-    background-color: #002b6b;
     height: 40px;
     transition: all .2s;
 
@@ -137,7 +136,6 @@ body {
     display: flex;
     align-items: center;
     height: 40px;
-    background-color: #002b6b;
     border-radius: 5px;
 }
 
@@ -146,7 +144,6 @@ body {
     color: white;
     display: flex;
     align-items: center;
-    background-color: #06548b;
     height: 40px;
     transition: all .2s;
 
@@ -208,7 +205,7 @@ body {
     height: max-content;
     margin-top: 20px;
     /* box-shadow: 10px 10px 50px 5px #000000; */
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: #1e2022;
     display: flex;
     border-radius: 10px;
     backdrop-filter: blur(2px);
@@ -271,12 +268,14 @@ body {
 .user_dashboard .user_activity .card {
     margin-bottom: 10px;
     cursor: pointer;
+    width: 100%;
     /* background-color: rgba(255, 255, 255, 0.469); */
     background-color: rgba(14, 14, 14, 0.793);
 }
 
 .user_dashboard .user_activity .pblm-post-card {
     transition: all 0.3s;
+    width: 100%;
 }
 
 .user_dashboard .user_activity .pblm-post-card:hover {
@@ -289,7 +288,7 @@ body {
 }
 
 .user_dashboard .user_activity .card .card-title {
-    color: #ccc;
+    color: rgb(226, 226, 226);
     cursor: pointer;
     text-decoration: none;
     transition: all .4s ;
@@ -300,12 +299,19 @@ body {
 }
 
 .user_dashboard .user_activity .card .card-text {
-    color: #7a7a7a;
+    color: #909090;
+    font-size: 14px;
 }
 
 .user_dashboard .card .card-bar .nav-link {
-    border: 1px solid #4a4a4a;
+    border: 1px solid #222222;
+    padding: 3px 0;
+    margin: 0 5px;
+}
+.user_dashboard .card .card-bar .nav-link:last-child {
+    border: none;
     padding: 0;
+    text-align: right;
     margin: 0 5px;
 }
 
@@ -328,7 +334,8 @@ body {
 
 .user_dashboard .card .related-topics .nav-link {
     padding: 2px 4px;
-    border: 1px solid #4a4a4a;
+    border: 1px solid #363636;
+
 }
 
 .user_dashboard .card .related-topics .nav-link.arrow {
@@ -391,7 +398,7 @@ body {
     border: none;
     font-size: 13px;
 }
-.modal-content{
+/* .modal-content{
     background-color: #eaeaeaed;
 }
 .modal-content input{
@@ -405,7 +412,7 @@ body {
 }
 .modal-content .cover{
     background-color: #eaeaea !important;
-}
+} */
 
 
 /* ----------------------------------------------------- */

@@ -34,8 +34,8 @@ if (isset($_SESSION['user_id'])) {
                     <div class="card pblm-post-card">
                         <div class="card-body">
                             <p class="visually-hidden pblm_id">' . $pblmDetail['problem_id'] . '</p>
-                            <a href="problem_panel.php?post_id=' . $pblmDetail['problem_id'] . '" class="card-title">
-                                <h5>' . $pblmDetail['title'] . '</h5>
+                            <a  class="card-title">
+                                <h5 style="font-size:21px">' . $pblmDetail['title'] . '</h5>
                             </a>
                             <p class="card-text">' . ((strlen($pblmDetail['description']) > 220) ? substr($pblmDetail['description'], 0, 220) . "..." : $pblmDetail['description']) . '</p>
                             <div class="related-topics">
@@ -50,9 +50,19 @@ if (isset($_SESSION['user_id'])) {
                             </div>
                             <div class="card-bar">
                                 <nav class="nav nav-pills nav-fill">
-                                    <p class="nav-link disabled">Solutions: 05</p>
-                                    <p class="nav-link disabled">Likes: 19</p>
-                                    <p class="nav-link disabled">Views: ' . $pblmDetail['views'] . '</p>
+                                    <p class="nav-link disabled">Answer:';
+
+                $allPLikeSql = mysqli_query($connection, "SELECT * FROM p_likes WHERE
+                                                        problem_id = '{$pblmDetail['problem_id']}'");
+
+                $ansCountSql = mysqli_query($connection, "SELECT * FROM answer WHERE problem_id = '{$pblmDetail['problem_id']}'");
+
+
+                $output .= ' ' . mysqli_num_rows($ansCountSql) . ' </p> <p class="nav-link disabled">Like: ' . mysqli_num_rows($allPLikeSql);
+
+
+                $output .= '</p>
+                                    <p class="nav-link disabled">View: ' . $pblmDetail['views'] . '</p>
                                     <p class="card-text nav-link"><small class="text-muted">Posted by <a
                                                 href="#">';
                 $userName = mysqli_fetch_assoc(mysqli_query($connection, "SELECT name FROM users WHERE users.student_id = '{$pblmDetail['student_id']}'"));
@@ -95,6 +105,7 @@ if (isset($_SESSION['user_id'])) {
         $getAnswersSql = mysqli_query($connection, "SELECT * FROM answer WHERE problem_id = '{$current_pblm_id}' ORDER BY last_modified desc");
         $allAnswers = array();
         $output = "";
+        $count = 0;
         $output .= mysqli_num_rows($getAnswersSql) . "*#";
         if (mysqli_num_rows($getAnswersSql) > 0) {
             while ($row = mysqli_fetch_assoc($getAnswersSql)) {
@@ -126,16 +137,25 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                         <div class="Solution-details">
                             <xmp class="card-text" style="max-width:100%; white-space:pre-wrap; padding: 10px 5px 0 5px; text-align: justify;"> ' . $ansDetail['description'] . '
-                            </xmp>
-                            <div class="images visually-hidden">
-                                <img src="resources/prob-img/prob-img-1.png" alt="">
-                                <img src="resources/prob-img/prob-img-2.png" alt="">
-                                <img src="resources/prob-img/prob-img-3.png" alt="">
-                            </div>
+                            </xmp>';
+
+                $pblm_imgSql = mysqli_query($connection, "SELECT * FROM ans_img WHERE ans_img.ans_id  = '{$ansDetail['answer_id']}'");
+                if (mysqli_num_rows($pblm_imgSql) > 0) {
+                    $output .= '<div class="images">';
+                } else {
+                    $output .= '<div class="images" style="border:none !important;">';
+                }
+                while ($piRow = mysqli_fetch_assoc($pblm_imgSql)) {
+                    $output .= '<img class="img-fluid" src="resources/pblm-imgs/' . $piRow['img_name'] . '" alt="">';
+                }
+
+
+
+                $output .= '</div>
                         </div>
                         <div class="related-topics">
                             <div class="reward-option">
-                                <ul class="nav nav-pills nav-fill">
+                                <ul class="nav nav-pills nav-fill visually-hidden">
                                     <li class="reward">
                                         <p>If your problem is solved by this answer, then you are requested to reward him by
                                             giving a star</p>
@@ -144,14 +164,20 @@ if (isset($_SESSION['user_id'])) {
                                     <li class="star"><i class="fa fa-star-o"></i></li>
                                 </ul>
                             </div>
-                            <div class="menu">
+                            <div class="menu">';
+                if ($_SESSION['user_id'] == $ansDetail['posted_by']) {
+                    $output .= '
                                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal"
-                                    data-bs-target="#AnswerDelete">Delete</button>
+                                    data-bs-target="#AnswerDelete' . $count . '">Delete</button>
                                 <button type="button" class="btn btn-outline-primary visually-" data-bs-toggle="modal"
-                                    data-bs-target="#AnswerEdit">Edit</button>
-                            </div>
+                                    data-bs-target="#AnswerEdit' . $count . '">Edit</button>
+                                ';
+                }
 
-                            <div class="modal fade" id="AnswerDelete" tabindex="-1" aria-labelledby="exampleModalLabel"
+
+                $output .= '</div>
+
+                            <div class="modal fade" id="AnswerDelete' . $count . '" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -161,13 +187,13 @@ if (isset($_SESSION['user_id'])) {
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary"
                                                 data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-danger">Delete</button>
+                                            <a href="php/delete.php?ans_id=' . $ansDetail['answer_id'] . '&deleteCode=deleteAns" class="btn btn-danger" style="padding:2px 5px; font-size:12px">Delete</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="AnswerEdit" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="AnswerEdit' . $count . '" tabindex="-1" aria-labelledby="exampleModalLabel"
                                 aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                     <div class="modal-content">
@@ -177,20 +203,17 @@ if (isset($_SESSION['user_id'])) {
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form class="signup_form" action="#" autocomplete="off">
-
-
-                                                <div class="form-floating mb-3">
-                                                    <input type="text" name="title" class="form-control" id="problemTitle"
-                                                        placeholder="Name" required>
-                                                    <label for="problemTitle">Title</label>
-                                                </div>
+                                            <form class="signup_form ans-update-form" enctype="multipart/form-data" action="#" autocomplete="off">
+                                            <input class="visually-hidden" type="text" name="answer_id"
+                                            value="' . $ansDetail['answer_id'] . '">
+                                            <input class="visually-hidden" type="text" name="problem_id"
+                                            value="' . $ansDetail['problem_id'] . '">
                                                 <div class="form-floating" style="overflow: hidden;">
                                                     <div class="cover"
                                                         style="border-radius: 5px;position: absolute; top: 0px; height: 20px; width: calc(100% - 2px); margin: 1px 1px 0; background-color: #fff; z-index: 10;">
                                                     </div>
-                                                    <textarea class="form-control" placeholder="Leave a comment here"
-                                                        id="floatingTextarea2" style="min-height: 100px;"></textarea>
+                                                    <textarea class="form-control" name="description" placeholder="Leave a comment here"
+                                                        id="floatingTextarea2" style="min-height: 100px;">' . $ansDetail['description'] . '</textarea>
                                                     <label for="floatingTextarea2" style="z-index: 100;">Description</label>
                                                 </div>
 
@@ -201,7 +224,7 @@ if (isset($_SESSION['user_id'])) {
                                                     <label class="form-label text-dark" style="margin:0 0 0 1px;"
                                                         for="profilePic">Select the pictures/screenshots (only png, jpg,
                                                         jpeg)</label>
-                                                    <input type="file" multiple class="form-control" id="profilePic"
+                                                    <input type="file" multiple name="solution_img[]" class="form-control" id="profilePic"
                                                         placeholder="">
                                                 </div>
                                                 <br>
@@ -215,8 +238,8 @@ if (isset($_SESSION['user_id'])) {
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn custom-btn-sec"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn custom-btn">Save Changes</button>
+                                                data-bs-dismiss="modal" style="padding:5px 8px; font-size:12px;color:#000;">Close</button>
+                                            <button type="button" class="btn custom-btn answer-edit-btn" style="padding:5px 8px; font-size:12px">Save Changes</button>
                                         </div>
                                     </div>
                                 </div>
@@ -227,29 +250,37 @@ if (isset($_SESSION['user_id'])) {
                         </div>
                         <div class="count-bar">
                             <ul class="">
-                                <li class="like">
-                                    <i class="fa fa-thumbs-o-up"></i>
-                                    19
-                                </li>
-                                <li class="dislike">
-                                    <i class="fa fa-thumbs-o-down"></i>
-                                    08
-                                </li>
+                            <li class="a-like like"><p class="visually-hidden answer_id_a">';
+
+                $allALikeSql = mysqli_query($connection, "SELECT * FROM a_likes WHERE
+                            answer_id = '{$ansDetail['answer_id']}'");
+                $output .= $ansDetail['answer_id'] . '</p>';
+                $indiALikeSql = mysqli_query($connection, "SELECT * FROM a_likes WHERE
+                                answer_id = '{$ansDetail['answer_id']}' AND user_id = '{$_SESSION['user_id']}'");
+                if (mysqli_num_rows($indiALikeSql) > 0) {
+                    $output .= '<i class="fa fa-thumbs-up" style="color:#5016ff"></i>';
+                } else {
+                    $output .= '<i class="fa fa-thumbs-up" style="color:#e1e1e1"></i>';
+                }
+                $output .= '<span class="aLikeCount">' . mysqli_num_rows($allALikeSql) . '</span>';
+
+
+                $output .= ' </li>
                             </ul>
-                            <p><small class="text-muted">answered ';
+                            <p><small class="text-muted">';
 
                 $ftime = mysqli_fetch_assoc(mysqli_query($connection, "SELECT TIMEDIFF(CURRENT_TIMESTAMP(),'{$ansDetail['last_modified']}') as difTime"));
                 $splitedTime = explode(":", $ftime['difTime']);
                 if ($splitedTime[0] == "00" && $splitedTime[1] == "00") {
-                    $output .= intval($splitedTime[2]) . "sec ago";
+                    $output .= intval($splitedTime[2]) . " sec ago";
                 } else if ($splitedTime[0] == "00" && $splitedTime[1] != "00") {
-                    $output .= intval($splitedTime[1]) . "min ago";
+                    $output .= intval($splitedTime[1]) . " min ago";
                 } else if (intval($splitedTime[0]) < 24) {
-                    $output .= intval($splitedTime[0]) . "h ago";
+                    $output .= intval($splitedTime[0]) . " h ago";
                 } else if (intval($splitedTime[0]) / 24 < 30) {
-                    $output .= intval($splitedTime[0]) / 24 . "days ago";
+                    $output .= intval(intval($splitedTime[0]) / 24) . " days ago";
                 } else {
-                    $output .= (intval($splitedTime[0]) / 24) / 30 . "M ago";
+                    $output .= intval((intval($splitedTime[0]) / 24) / 30) . " M ago";
                 }
 
 
@@ -274,6 +305,7 @@ if (isset($_SESSION['user_id'])) {
 
 
                 ';
+                $count++;
             }
         }
         echo $output;

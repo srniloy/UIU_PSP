@@ -40,9 +40,11 @@ if (!isset($_SESSION['user_id'])) {
             <div class="top_bar">
                 <nav class="navbar navbar-dark">
                     <div class="container-fluid px-4">
-                        <div class="back-page">
+                        <div class="back-page d-flex align-items-center">
                             <a href="index.php"><i class="fa fa-arrow-left"></i></a>
-                            <a class="navbar-brand" style="color: #f50; margin-left: 20px" href="index.php">UIU PSP</a>
+                            <a class="navbar-brand"
+                                style="color: #f50;margin-left:10px; font-size: 30px; font-weight: 700; letter-spacing: .5px;"
+                                href="index.php">UIU PSP</a>
                         </div>
 
                         <nav class="navbar navbar-expand-sm">
@@ -51,9 +53,10 @@ if (!isset($_SESSION['user_id'])) {
                                 <!-- Links -->
                                 <ul class="navbar-nav align-items-center">
 
-                                    <li class="nav-item me-1">
+                                    <li class="nav-item me-1" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Question Paper Upload">
                                         <a class="nav-link qp_upload ques-upload-btn" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#quesitonPaperUpload">Q. PAPER UPLOAD</a>
+                                            data-bs-target="#quesitonPaperUpload"></a>
                                     </li>
                                 </ul>
                             </div>
@@ -72,7 +75,7 @@ if (!isset($_SESSION['user_id'])) {
                     <div class="profile-pic">
                         <img src="resources/profile-pic/<?php echo $user['img'] ?>" alt="">
                         <div class="user-info">
-                            <h4>
+                            <h4 style="color:white">
                                 <?php echo $user['name'] ?>
                             </h4>
                             <h6><?php echo $user['student_id'] ?></h6>
@@ -113,7 +116,8 @@ if (!isset($_SESSION['user_id'])) {
                             <h6>Question Paper Uploaded</h6>
                         </div>
 
-                        <div class="p-container">
+                        <div class="p-container" data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="If your posted answer is accepted, then rating will increase by 5 & if you upload a question paper then rating will increase by 10">
                             <div class="p-circular-progress" style="background-color: #d76903;">
                                 <div class="p-value-container">14</div>
                             </div>
@@ -127,7 +131,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <section class="ind-user-course">
                     <div class="course-bar">
-                        <h5>Taken <span>Courses</span> And <span>Question</span> Papers</h5>
+                        <h4>Taken <span>Courses</span> And <span>Question</span> Papers</h4>
                         <div class="menu">
                             <i class="fa fa-plus add-course-btn fs-4" data-bs-toggle="modal"
                                 data-bs-target="#addCourse"></i>
@@ -148,7 +152,7 @@ if (!isset($_SESSION['user_id'])) {
                             
                             <div class="courseDetail" style="height: min-content;">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header" data-bs-toggle="collapse" href="#collapse' . $i . '">
 
                                     <div class="course-header">
                                         <div class="course-detail">
@@ -161,8 +165,8 @@ if (!isset($_SESSION['user_id'])) {
                                         </div>
                                     </div>
 
-                                    <a class="view-qp" data-bs-toggle="collapse" href="#collapse' . $i . '">
-                                        <p> View Question papers </p>
+                                    <a class="view-qp">
+                                        <p></p>
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                 </div>
@@ -514,12 +518,11 @@ if (!isset($_SESSION['user_id'])) {
 
     <!-- =============================================================================================================== -->
 
-    <script src="bootstrap/bootstrap.min.js"></script>
-
-
-
+    <!-- <script src="bootstrap/bootstrap.min.js"></script> -->
+    <script src="bootstrap/bootstrap.bundle.min.js"></script>
 
     <script src="javascript/profile.js"></script>
+
 </body>
 
 </html>

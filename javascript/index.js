@@ -135,7 +135,6 @@ pblmPostCancelBtn = document.querySelectorAll(".pblm-post-cancel-btn"),
 pblmPostForm = document.querySelector(".problem-post-form");
 let coursesPP;
 let courseCodesPP =[];
-console.log(pblmPostBtn);
 
 pblmPostBtn.onclick = ()=>{ // -------------- Getting All course's info from database as object.
     let xhr = new XMLHttpRequest();
@@ -262,7 +261,6 @@ setInterval(()=>{
                 data = xhr.response;
                 let dataSplit = data.split("*#");
                 let ppNums = parseInt(dataSplit[0]);
-                console.log(dataSplit[0]);
                 if(pblmPostsLength != ppNums){
                     allPostContainer.innerHTML = dataSplit[1];
                     pblmPostsLength = ppNums;
@@ -281,6 +279,8 @@ setInterval(()=>{
 
 
 
+
+
 // ========================= Normal Design Codes ===============================>
 
 
@@ -291,7 +291,7 @@ function postTabLink(){
     pPostTab.forEach(element => {
         element.onclick = ()=>{
             const pblmId = element.querySelector(".pblm_id").innerHTML;
-            location.href = "problem_panel.php?post_id="+pblmId;
+            location.href = "problem_panel.php?post_id="+pblmId+"&view=true";
         }
     });
 }

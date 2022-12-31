@@ -39,20 +39,24 @@ if (!isset($_SESSION['user_id'])) {
             <div class="top_bar">
                 <nav class="navbar navbar-dark">
                     <div class="container-fluid px-4">
-                        <a class="navbar-brand" style="color: #f50;" href="index.php">UIU PSP</a>
-
+                        <a class="navbar-brand"
+                            style="color: #f50; font-size: 30px; font-weight: 700; letter-spacing: .5px;"
+                            href="index.php"> UIU PSP</a>
+                        <!-- <img src="resources/logo.png" style="width: 64px;"></img> -->
                         <nav class="navbar navbar-expand-sm">
 
                             <div class="">
                                 <!-- Links -->
                                 <ul class="navbar-nav align-items-center">
-                                    <li class="nav-item me-5">
+                                    <li class="nav-item me-5" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Post your problem">
                                         <a class="nav-link problem_post_icon pblm-post" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#problemPost">PROBLEM POST</a>
+                                            data-bs-target="#problemPost"></a>
                                     </li>
-                                    <li class="nav-item me-5">
+                                    <li class="nav-item me-5" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                        title="Question Paper Upload">
                                         <a class="nav-link qp_upload ques-upload-btn" href="#" data-bs-toggle="modal"
-                                            data-bs-target="#quesitonPaperUpload">Q. PAPER UPLOAD</a>
+                                            data-bs-target="#quesitonPaperUpload"></a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="navbar-brand d-flex align-items-center" href="profile.php">
@@ -609,6 +613,7 @@ if (!isset($_SESSION['user_id'])) {
 
 
     <script src="bootstrap/bootstrap.min.js"></script>
+    <script src="bootstrap/bootstrap.bundle.min.js"></script>
     <script src="javascript/index.js"></script>
 
 
@@ -625,6 +630,12 @@ if (!isset($_SESSION['user_id'])) {
     for (var i = 0; i < bubblyButtons.length; i++) {
         bubblyButtons[i].addEventListener('click', animateButton, false);
     }
+
+
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
     </script>
 
 </body>

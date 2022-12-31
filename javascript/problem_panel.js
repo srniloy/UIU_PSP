@@ -51,12 +51,14 @@ setInterval(()=>{
                 let dataSplit = data.split("*#");
                 let ppNums = parseInt(dataSplit[0]);
                 // let dataSplitPro = dataSplit[1];
-                // console.log(dataSplit[ppNums]);
+                // console.log(ppNums);
                 if(answersLength != ppNums){
                     allAnswerContainer.innerHTML = dataSplit[1];
                     answersLength = ppNums;
                     setAnswerCommentPostData();
                     fetchAnswerComment();
+                    updateAnswer();
+                    answerLikes();
                 }else if(ppNums == 0){
                     allAnswerContainer.innerHTML = '<p style="margin-top: 30px;">There is no answer has been posted yet </p>';
                 }
@@ -208,7 +210,7 @@ function fetchAnswerComment(){
                         let dataSplit = data.split("*#");
                         let ppNums = parseInt(dataSplit[0]);
                         if(aCommentsLength[i] != ppNums){
-                            console.log(ppNums+" - "+aCommentsLength[i]);
+                            // console.log(ppNums+" - "+aCommentsLength[i]);
                             ansCommentContainer[i].innerHTML = dataSplit[1];
                             forScroll[i].scrollTop = forScroll[i].scrollHeight;
                             aCommentsLength[i] = ppNums;
@@ -221,4 +223,140 @@ function fetchAnswerComment(){
             
         }
     }, 1000);
+}
+
+
+// ==================================== problem post update ===============================>
+
+
+const ppUpdateBtn = document.querySelector(".problem-post-update-btn"),
+ppUpdateForm= document.querySelector(".problem-post-update-form");
+
+
+
+ppUpdateBtn.onclick = ()=>{
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/update.php", true);
+    xhr.onload = ()=>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = xhr.response;
+                let ab = data.split(" - ");
+                console.log(data);
+                if(ab[0] == "success"){
+                    location.href = "problem_panel.php?post_id="+ab[1];
+                }
+            }
+        }
+    }
+    let formData = new FormData(ppUpdateForm);
+    formData.append("updateCode", "updatePPost");
+    xhr.send(formData);
+}
+
+
+
+// ==================================== problem post update ===============================>
+
+
+function updateAnswer(){
+const ansUpdateBtn = document.querySelectorAll(".answer-edit-btn"),
+ansUpdateForm= document.querySelectorAll(".ans-update-form");
+
+// ansUpdateBtn.forEach((element,i) => {
+//     element.onclick = ()=>{
+
+//         console.log(element + i);
+//     }
+    
+// });
+
+ansUpdateBtn.forEach((element,i) => {
+    element.onclick = ()=>{
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "php/update.php", true);
+        xhr.onload = ()=>{
+            if(xhr.readyState === XMLHttpRequest.DONE){
+                if(xhr.status === 200){
+                    let data = xhr.response;
+                    let ab = data.split(" - ");
+                    console.log(data);
+                    if(ab[0] == "success"){
+                        location.href = "problem_panel.php?post_id="+ab[1];
+                    }
+                }
+            }
+        }
+        let formData = new FormData(ansUpdateForm[i]);
+        formData.append("updateCode", "ansUpdate");
+        xhr.send(formData);
+    }
+    
+});
+}
+
+
+
+
+//================================== Like Dislike ================================>
+
+
+const likeBtn = document.querySelector(".p-like");
+const pLikeCount = document.querySelector(".pLikeCount");
+const user_id = document.querySelector(".user_id_p").innerHTML,
+problem_id = document.querySelector(".problem_id_p").innerHTML;
+
+likeBtn.onclick = ()=> {
+    let xhr = new XMLHttpRequest();
+        xhr.open("POST", "php/count.php", true);
+        xhr.onload = ()=>{
+            if(xhr.readyState === XMLHttpRequest.DONE){
+                if(xhr.status === 200){
+                    let data = xhr.response;
+                    let sd = data.split(" - ");
+                    if(sd[0] == "liked"){
+                        likeBtn.querySelector("i").style.color = "#5016ff";
+                    }
+                    else if(sd[0] == "unliked"){
+                        likeBtn.querySelector("i").style.color = "#e1e1e1";
+                    }
+                    pLikeCount.innerHTML = sd[1];
+                }
+            }
+        }
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("countCode=pLike&user_id="+ user_id+"&problem_id="+problem_id);
+}
+
+
+function answerLikes() {
+    const alikeBtn = document.querySelectorAll(".a-like");
+    const aLikeCount = document.querySelectorAll(".aLikeCount");
+    const answer_id_Container = document.querySelectorAll(".answer_id_a");
+
+    alikeBtn.forEach((btn,i) => {
+        btn.onclick = ()=> {
+            console.log("clicked");
+            let xhr = new XMLHttpRequest();
+                xhr.open("POST", "php/count.php", true);
+                xhr.onload = ()=>{
+                    if(xhr.readyState === XMLHttpRequest.DONE){
+                        if(xhr.status === 200){
+                            let data = xhr.response;
+                            console.log(data);
+                            let sd = data.split(" - ");
+                            if(sd[0] == "liked"){
+                                btn.querySelector("i").style.color = "#5016ff";
+                            }
+                            else if(sd[0] == "unliked"){
+                                btn.querySelector("i").style.color = "#e1e1e1";
+                            }
+                            aLikeCount[i].innerHTML = sd[1];
+                        }
+                    }
+                }
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("countCode=aLike&user_id="+ user_id+"&answer_id="+answer_id_Container[i].innerHTML);
+        }
+    });
 }
