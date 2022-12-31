@@ -18,7 +18,7 @@ if (isset($_SESSION['user_id'])) {
 
     // ================================================= Getting All Posts From Database ===========================>
 
-    if ($_POST['getCode'] === "getPosts") {
+    if ($_POST['getCode'] === "getActivityPosts") {
         $getPblmPostsSql = mysqli_query($connection, "SELECT * FROM problem_asked ORDER BY last_modified desc");
         $allPblmPosts = array();
         $output = "";
@@ -35,7 +35,7 @@ if (isset($_SESSION['user_id'])) {
                         <div class="card-body">
                             <p class="visually-hidden pblm_id">' . $pblmDetail['problem_id'] . '</p>
                             <a  class="card-title">
-                                <h5 style="font-size:21px">' . $pblmDetail['title'] . '</h5>
+                                <h5 style="font-size:20px; font-weight:bold;letter-spacing:0.7px;">' . $pblmDetail['title'] . '</h5>
                             </a>
                             <p class="card-text">' . ((strlen($pblmDetail['description']) > 220) ? substr($pblmDetail['description'], 0, 220) . "..." : $pblmDetail['description']) . '</p>
                             <div class="related-topics">
@@ -67,7 +67,7 @@ if (isset($_SESSION['user_id'])) {
                                                 href="#">';
                 $userName = mysqli_fetch_assoc(mysqli_query($connection, "SELECT name FROM users WHERE users.student_id = '{$pblmDetail['student_id']}'"));
 
-                $output .= $userName['name'] . " </a> ";
+                $output .= $userName['name'] . "</a> ";
                 $ftime = mysqli_fetch_assoc(mysqli_query($connection, "SELECT TIMEDIFF(CURRENT_TIMESTAMP(),'{$pblmDetail['last_modified']}') as difTime"));
                 $splitedTime = explode(":", $ftime['difTime']);
                 if ($splitedTime[0] == "00" && $splitedTime[1] == "00") {
@@ -97,6 +97,176 @@ if (isset($_SESSION['user_id'])) {
         echo $output;
     }
 
+
+
+    if ($_POST['getCode'] === "getPendingPosts") {
+        $getPblmPostsSql = mysqli_query($connection, "SELECT * FROM problem_asked ORDER BY last_modified desc");
+        $allPblmPosts = array();
+        $output = "";
+        if (mysqli_num_rows($getPblmPostsSql) > 0) {
+            while ($row = mysqli_fetch_assoc($getPblmPostsSql)) {
+                array_push($allPblmPosts, $row);
+            }
+            $output .= count($allPblmPosts) . "*#";
+            foreach ($allPblmPosts as $pblmDetail) {
+                $checkAnsSql = mysqli_query($connection, "SELECT answer_id FROM answer WHERE problem_id = '{$pblmDetail['problem_id']}'");
+                if (mysqli_num_rows($checkAnsSql) == 0) {
+                    $pCourseTitle = mysqli_fetch_assoc(mysqli_query($connection, "SELECT course_title FROM course WHERE course.course_code = '{$pblmDetail['course_code']}'"));
+                    $output .= '
+                
+                    <div class="card pblm-post-card">
+                        <div class="card-body">
+                            <p class="visually-hidden pblm_id">' . $pblmDetail['problem_id'] . '</p>
+                            <a  class="card-title">
+                                <h5 style="font-size:20px; font-weight:bold;letter-spacing:0.7px;">' . $pblmDetail['title'] . '</h5>
+                            </a>
+                            <p class="card-text">' . ((strlen($pblmDetail['description']) > 220) ? substr($pblmDetail['description'], 0, 220) . "..." : $pblmDetail['description']) . '</p>
+                            <div class="related-topics">
+                                <p>Related:</p>
+                                <nav class="nav nav-pills nav-fill">
+                                    <p class="nav-link disabled">' . $pCourseTitle['course_title'] . '</p>
+                        
+                                    <p class="nav-link disabled arrow"><i
+                                            class="fa fa-long-arrow-right"></i></p>
+                                    <p class="nav-link disabled ">' . $pblmDetail['topic_name'] . '</p>
+                                </nav>
+                            </div>
+                            <div class="card-bar">
+                                <nav class="nav nav-pills nav-fill">
+                                    <p class="nav-link disabled">Answer:';
+
+                    $allPLikeSql = mysqli_query($connection, "SELECT * FROM p_likes WHERE
+                                                        problem_id = '{$pblmDetail['problem_id']}'");
+
+                    $ansCountSql = mysqli_query($connection, "SELECT * FROM answer WHERE problem_id = '{$pblmDetail['problem_id']}'");
+
+
+                    $output .= ' ' . mysqli_num_rows($ansCountSql) . ' </p> <p class="nav-link disabled">Like: ' . mysqli_num_rows($allPLikeSql);
+
+
+                    $output .= '</p>
+                                    <p class="nav-link disabled">View: ' . $pblmDetail['views'] . '</p>
+                                    <p class="card-text nav-link"><small class="text-muted">Posted by <a
+                                                href="#">';
+                    $userName = mysqli_fetch_assoc(mysqli_query($connection, "SELECT name FROM users WHERE users.student_id = '{$pblmDetail['student_id']}'"));
+
+                    $output .= $userName['name'] . " </a> ";
+                    $ftime = mysqli_fetch_assoc(mysqli_query($connection, "SELECT TIMEDIFF(CURRENT_TIMESTAMP(),'{$pblmDetail['last_modified']}') as difTime"));
+                    $splitedTime = explode(":", $ftime['difTime']);
+                    if ($splitedTime[0] == "00" && $splitedTime[1] == "00") {
+                        $output .= intval($splitedTime[2]) . "sec ago";
+                    } else if ($splitedTime[0] == "00" && $splitedTime[1] != "00") {
+                        $output .= intval($splitedTime[1]) . "min ago";
+                    } else if (intval($splitedTime[0]) < 24) {
+                        $output .= intval($splitedTime[0]) . "h ago";
+                    } else if (intval($splitedTime[0]) / 24 < 30) {
+                        $output .= intval(intval($splitedTime[0]) / 24) . "d ago";
+                    } else {
+                        $output .= intval((intval($splitedTime[0]) / 24) / 30) . "M ago";
+                    }
+
+                    $output .= '
+                                                </small></p>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                ';
+                }
+            }
+        }
+        echo $output;
+    }
+
+    if ($_POST['getCode'] === "getSolvedPosts") {
+        $getPblmPostsSql = mysqli_query($connection, "SELECT * FROM problem_asked ORDER BY last_modified desc");
+        $allPblmPosts = array();
+        $output = "";
+        if (mysqli_num_rows($getPblmPostsSql) > 0) {
+            while ($row = mysqli_fetch_assoc($getPblmPostsSql)) {
+                array_push($allPblmPosts, $row);
+            }
+            $output .= count($allPblmPosts) . "*#";
+            foreach ($allPblmPosts as $pblmDetail) {
+                $checkAnsSql = mysqli_query($connection, "SELECT answer_id FROM answer WHERE problem_id = '{$pblmDetail['problem_id']}' AND is_accepted = 1");
+                if (mysqli_num_rows($checkAnsSql) > 0) {
+                    $pCourseTitle = mysqli_fetch_assoc(mysqli_query($connection, "SELECT course_title FROM course WHERE course.course_code = '{$pblmDetail['course_code']}'"));
+                    $output .= '
+                
+                    <div class="card pblm-post-card">
+                        <div class="card-body">
+                            <p class="visually-hidden pblm_id">' . $pblmDetail['problem_id'] . '</p>
+                            <a  class="card-title">
+                                <h5 style="font-size:20px; font-weight:bold;letter-spacing:0.7px;">' . $pblmDetail['title'] . '</h5>
+                            </a>
+                            <p class="card-text">' . ((strlen($pblmDetail['description']) > 220) ? substr($pblmDetail['description'], 0, 220) . "..." : $pblmDetail['description']) . '</p>
+                            <div class="related-topics">
+                                <p>Related:</p>
+                                <nav class="nav nav-pills nav-fill">
+                                    <p class="nav-link disabled">' . $pCourseTitle['course_title'] . '</p>
+                        
+                                    <p class="nav-link disabled arrow"><i
+                                            class="fa fa-long-arrow-right"></i></p>
+                                    <p class="nav-link disabled ">' . $pblmDetail['topic_name'] . '</p>
+                                </nav>
+                            </div>
+                            <div class="card-bar">
+                                <nav class="nav nav-pills nav-fill">
+                                    <p class="nav-link disabled">Answer:';
+
+                    $allPLikeSql = mysqli_query($connection, "SELECT * FROM p_likes WHERE
+                                                        problem_id = '{$pblmDetail['problem_id']}'");
+
+                    $ansCountSql = mysqli_query($connection, "SELECT * FROM answer WHERE problem_id = '{$pblmDetail['problem_id']}'");
+
+
+                    $output .= ' ' . mysqli_num_rows($ansCountSql) . ' </p> <p class="nav-link disabled">Like: ' . mysqli_num_rows($allPLikeSql);
+
+
+                    $output .= '</p>
+                                    <p class="nav-link disabled">View: ' . $pblmDetail['views'] . '</p>
+                                    <p class="card-text nav-link"><small class="text-muted">Posted by <a
+                                                href="#">';
+                    $userName = mysqli_fetch_assoc(mysqli_query($connection, "SELECT name FROM users WHERE users.student_id = '{$pblmDetail['student_id']}'"));
+
+                    $output .= $userName['name'] . " </a> ";
+                    $ftime = mysqli_fetch_assoc(mysqli_query($connection, "SELECT TIMEDIFF(CURRENT_TIMESTAMP(),'{$pblmDetail['last_modified']}') as difTime"));
+                    $splitedTime = explode(":", $ftime['difTime']);
+                    if ($splitedTime[0] == "00" && $splitedTime[1] == "00") {
+                        $output .= intval($splitedTime[2]) . "sec ago";
+                    } else if ($splitedTime[0] == "00" && $splitedTime[1] != "00") {
+                        $output .= intval($splitedTime[1]) . "min ago";
+                    } else if (intval($splitedTime[0]) < 24) {
+                        $output .= intval($splitedTime[0]) . "h ago";
+                    } else if (intval($splitedTime[0]) / 24 < 30) {
+                        $output .= intval(intval($splitedTime[0]) / 24) . "d ago";
+                    } else {
+                        $output .= intval((intval($splitedTime[0]) / 24) / 30) . "M ago";
+                    }
+
+                    $output .= '
+                                                </small></p>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                
+                ';
+                }
+            }
+        }
+        echo $output;
+    }
+
+
+
+
+
     // =========================================== Get all Answer form database ====================================>
 
 
@@ -121,19 +291,70 @@ if (isset($_SESSION['user_id'])) {
                 <div class="card-body individual-solution">
                         <!-- <h4 style="border-bottom: 1px solid #333; padding: 0 0 5px 10px;">#1</h4> -->
                         <div class="navbar-brand d-flex align-items-center" style="padding: 0 5px 10px 5px;">
-                            <a href="profile.php">
-                                <img src="resources/profile-pic/' . $userName['img'] . '" alt="Your Photo" style="width:35px;"
-                                    class="rounded-pill me-2">
+                            <div style="
+                            width: 35px;
+                            height: 35px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin-right: 10px;
+                            overflow: hidden;
+                            border-radius: 50%;">
+                            <a>
+                                <img src="resources/profile-pic/' . $userName['img'] . '" alt="Avatar" style="width: 35px;"
+                                    class="">
                             </a>
+                            </div>
                             <div
                                 style="display: flex; align-items: center; justify-content: space-between; width: 100%; border-bottom: 1px solid #333;">
-                                <a href="profile.php">
-                                    <h6 class="name" style="line-height: 40px; width:100%; margin: 0;">
+                                <a>
+                                    <h6 class="name" style="line-height: 40px; width:100%; margin: 0; color:#eee">
                                         ' . $userName['name'] . '
                                     </h6>
-                                </a>
-                                <i class="fa fa-star-o p-1 fs-3"></i>
-                            </div>
+                                </a>';
+
+                $getUserID = mysqli_fetch_assoc(mysqli_query($connection, "SELECT student_id FROM problem_asked WHERE problem_id = '{$current_pblm_id}'"));
+
+                if ($_SESSION['user_id'] == $getUserID['student_id']) {
+
+                    $qpStar = mysqli_fetch_assoc(mysqli_query($connection, "SELECT is_accepted FROM answer WHERE answer_id = '{$ansDetail['answer_id']}'"));
+
+                    if ($qpStar['is_accepted'] == 1) {
+                        $output .= '
+                                <i class="fa fa-star p-1 fs-3 answer-accepted-star" style="color:#5016ff">
+                                <p class="visually-hidden answer_id_star">' . $ansDetail['answer_id'] . '</p>
+                                </i>
+                            ';
+                    } else {
+                        $output .= '
+                                <i class="fa fa-star p-1 fs-3 answer-accepted-star" style="color:#e1e1e1">
+                                <p class="visually-hidden answer_id_star">' . $ansDetail['answer_id'] . '</p>
+                                </i>
+                            ';
+                    }
+
+                } else {
+                    $qpStar = mysqli_fetch_assoc(mysqli_query($connection, "SELECT is_accepted FROM answer WHERE answer_id = '{$ansDetail['answer_id']}'"));
+
+                    if ($qpStar['is_accepted'] == 1) {
+                        $output .= '
+                                <i class="fa fa-star p-1 fs-3" style="color:#5016ff">
+                                <p class="visually-hidden answer_id_star">' . $ansDetail['answer_id'] . '</p>
+                                </i>
+                            ';
+                    } else {
+                        $output .= '
+                                <i class="fa fa-star p-1 fs-3" style="color:#e1e1e1">
+                                <p class="visually-hidden answer_id_star">' . $ansDetail['answer_id'] . '</p>
+                                </i>
+                            ';
+                    }
+                }
+
+
+
+
+                $output .= '</div>
                         </div>
                         <div class="Solution-details">
                             <xmp class="card-text" style="max-width:100%; white-space:pre-wrap; padding: 10px 5px 0 5px; text-align: justify;"> ' . $ansDetail['description'] . '

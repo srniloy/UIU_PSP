@@ -196,8 +196,16 @@ if (!isset($_SESSION['user_id'])) {
         <div class="card-body answer-section">
             <div class="post-answer">
                 <h2 class="card-title">Answers</h2>
-                <button type="button" class="btn post-ans" data-bs-toggle="modal" data-bs-target="#postAnswer">Post
+
+                <?php
+                if ($_SESSION['user_id'] != $pblmPostInfo['student_id']) {
+                    echo '
+                        <button type="button" class="btn post-ans" data-bs-toggle="modal" data-bs-target="#postAnswer">Post
                     Your Answer</button>
+                        ';
+                }
+                ?>
+
 
                 <div class="modal fade" id="postAnswer" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">

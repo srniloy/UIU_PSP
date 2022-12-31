@@ -359,4 +359,33 @@ function answerLikes() {
                 xhr.send("countCode=aLike&user_id="+ user_id+"&answer_id="+answer_id_Container[i].innerHTML);
         }
     });
+    answerStar();
+}
+
+function answerStar() {
+    const aStarBtn = document.querySelectorAll(".answer-accepted-star");
+
+    aStarBtn.forEach(btn => {
+        btn.onclick = ()=> {
+            let xhr = new XMLHttpRequest();
+                xhr.open("POST", "php/count.php", true);
+                xhr.onload = ()=>{
+                    if(xhr.readyState === XMLHttpRequest.DONE){
+                        if(xhr.status === 200){
+                            let data = xhr.response;
+                            console.log(data);
+                            if(data == "accepted"){
+                                btn.style.color = "#5016ff";
+                            }
+                            else if(data == "notAccepted"){
+                                btn.style.color = "#e1e1e1";
+                            }
+                        }
+                    }
+                }
+                const answerId = btn.querySelector(".answer_id_star").innerHTML;
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.send("countCode=aStar&answer_id="+answerId);
+        }
+    });
 }

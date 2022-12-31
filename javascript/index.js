@@ -246,7 +246,8 @@ pblmPostSubmitBtn.onclick = ()=>{
 // ---------------------------------------------------------All post fetch-------------------------------------------------------->
 
 
-const allPostContainer = document.querySelector(".user_activity .posts");
+const allPostContainer = document.querySelector(".user_activity .activity-posts");
+
 
 let pblmPostsLength = -1;
 
@@ -264,19 +265,81 @@ setInterval(()=>{
                 if(pblmPostsLength != ppNums){
                     allPostContainer.innerHTML = dataSplit[1];
                     pblmPostsLength = ppNums;
-                    postTabLink();
+                    
                 }
             }
         }
     }
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("getCode=getPosts");
+    xhr.send("getCode=getActivityPosts");
 
 
 
 
 },1000);
 
+const pendingPostContainer = document.querySelector(".user_activity .pending-posts");
+
+
+let pendingPostsLength = -1;
+
+setInterval(()=>{
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/getData.php", true);
+    xhr.onload = ()=>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = "";
+                data = xhr.response;
+                let dataSplit = data.split("*#");
+                let ppNums = parseInt(dataSplit[0]);
+                if(pendingPostsLength != ppNums){
+                    pendingPostContainer.innerHTML = dataSplit[1];
+                    pendingPostsLength = ppNums;
+                }
+            }
+        }
+    }
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("getCode=getPendingPosts");
+
+
+
+
+},1000);
+
+const solvedPostContainer = document.querySelector(".user_activity .solved-posts");
+
+
+let solvedPostsLength = -1;
+
+setInterval(()=>{
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "php/getData.php", true);
+    xhr.onload = ()=>{
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                let data = "";
+                data = xhr.response;
+                let dataSplit = data.split("*#");
+                let ppNums = parseInt(dataSplit[0]);
+                if(solvedPostsLength != ppNums){
+                    solvedPostContainer.innerHTML = dataSplit[1];
+                    solvedPostsLength = ppNums;
+                    postTabLink();
+                }
+            }
+        }
+    }
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("getCode=getSolvedPosts");
+
+
+
+
+},1000);
 
 
 
@@ -290,6 +353,7 @@ function postTabLink(){
 
     pPostTab.forEach(element => {
         element.onclick = ()=>{
+            console.log("clicked");
             const pblmId = element.querySelector(".pblm_id").innerHTML;
             location.href = "problem_panel.php?post_id="+pblmId+"&view=true";
         }

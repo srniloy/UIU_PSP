@@ -57,7 +57,15 @@ if (isset($_SESSION['user_id'])) {
                                             (qp_id, course_code, trimester_id, ques_type,ques_file,error, uploader_id) VALUES
                                             ('{$qp_id}','{$courseCode}','{$trimester}','{$exam}','{$new_qp_name}', 1, '{$studentId}')");
                                     if ($qpUpSql) {
-                                        echo "success";
+                                        $ratingSql = mysqli_query($connection, "SELECT rating FROM users WHERE student_id  = '{$_SESSION['user_id']}'");
+
+                                        if (mysqli_num_rows($ratingSql) > 0) {
+                                            $UserRatingRow = mysqli_fetch_assoc($ratingSql);
+                                            $rating = intval($UserRatingRow['rating']) + 10;
+                                            mysqli_query($connection, "UPDATE users SET rating = $rating WHERE student_id = '{$_SESSION['user_id']}'");
+
+                                            echo "success";
+                                        }
                                     } else {
                                         echo "Something went wrong!";
                                     }
@@ -74,7 +82,16 @@ if (isset($_SESSION['user_id'])) {
                                             (qp_id, course_code, trimester_id, ques_type,ques_file,error, uploader_id) VALUES
                                             ('{$qp_id}','{$courseCode}','{$trimester}','{$exam}','{$new_qp_name}', 1, '{$studentId}')");
                                     if ($qpUpSql) {
-                                        echo "success";
+
+                                        $ratingSql = mysqli_query($connection, "SELECT rating FROM users WHERE student_id  = '{$_SESSION['user_id']}'");
+
+                                        if (mysqli_num_rows($ratingSql) > 0) {
+                                            $UserRatingRow = mysqli_fetch_assoc($ratingSql);
+                                            $rating = intval($UserRatingRow['rating']) + 5;
+                                            mysqli_query($connection, "UPDATE users SET rating = $rating WHERE student_id = '{$_SESSION['user_id']}'");
+
+                                            echo "success";
+                                        }
                                     } else {
                                         echo "Something went wrong!";
                                     }
@@ -140,7 +157,15 @@ if (isset($_SESSION['user_id'])) {
                                 $pblmImgSql = mysqli_query($connection, "INSERT INTO pblm_img
                                                 (img_name,problem_id) VALUES ('{$x}','{$problem_id}')");
                             }
-                            echo "success";
+                            $ratingSql = mysqli_query($connection, "SELECT rating FROM users WHERE student_id  = '{$_SESSION['user_id']}'");
+
+                            if (mysqli_num_rows($ratingSql) > 0) {
+                                $UserRatingRow = mysqli_fetch_assoc($ratingSql);
+                                $rating = intval($UserRatingRow['rating']) + 1;
+                                mysqli_query($connection, "UPDATE users SET rating = $rating WHERE student_id = '{$_SESSION['user_id']}'");
+
+                                echo "success";
+                            }
                         }
                     } else {
                         echo "unsuccessful Move";
@@ -161,6 +186,11 @@ if (isset($_SESSION['user_id'])) {
             $aPostedBy = mysqli_escape_string($connection, $_SESSION['user_id']);
             $ans_pblm_id = mysqli_escape_string($connection, $_POST['problem_id']);
             $aDescription = mysqli_escape_string($connection, $_POST['description']);
+
+            // $getUserID = mysqli_fetch_assoc(mysqli_query($connection, "SELECT student_id FROM problem_asked WHERE problem_id = '{$_POST['problem_id']}'"));
+            // if($getUserID['student_id'] == $_SESSION['user_id']){
+
+            // }
 
             $solutionNoSql = mysqli_query($connection, "SELECT * FROM answer");
             $answer_id = $_POST['problem_id'] . "_" . "S" . mysqli_num_rows($solutionNoSql);
@@ -196,7 +226,15 @@ if (isset($_SESSION['user_id'])) {
                                 $ansImgSql = mysqli_query($connection, "INSERT INTO ans_img
                                             (img_name,ans_id) VALUES ('{$x}','{$answer_id}')");
                             }
-                            echo $_POST['problem_id'];
+                            $ratingSql = mysqli_query($connection, "SELECT rating FROM users WHERE student_id  = '{$_SESSION['user_id']}'");
+
+                            if (mysqli_num_rows($ratingSql) > 0) {
+                                $UserRatingRow = mysqli_fetch_assoc($ratingSql);
+                                $rating = intval($UserRatingRow['rating']) + 3;
+                                mysqli_query($connection, "UPDATE users SET rating = $rating WHERE student_id = '{$_SESSION['user_id']}'");
+
+                                echo $_POST['problem_id'];
+                            }
                             // header("location: ../problem_panel.php");
                         }
                     } else {

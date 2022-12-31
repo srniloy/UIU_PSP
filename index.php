@@ -59,10 +59,9 @@ if (!isset($_SESSION['user_id'])) {
                                             data-bs-target="#quesitonPaperUpload"></a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="navbar-brand d-flex align-items-center" href="profile.php">
+                                        <a class="navbar-brand profile_pic" href="profile.php">
                                             <img src="resources/profile-pic/<?php echo $row['img'] ?>" alt="Your Photo"
-                                                style="width:35px;" class="rounded-pill" data-bs-toggle="tooltip"
-                                                title="Profile">
+                                                class="rounded-pill" data-bs-toggle="tooltip" title="Profile">
                                         </a>
                                     </li>
                                 </ul>
@@ -123,10 +122,13 @@ if (!isset($_SESSION['user_id'])) {
                         <div class="tab-pane fade show active post-activity-pane" id="home-tab-pane" role="tabpanel"
                             aria-labelledby="home-tab" tabindex="0">
                             <div class="post-container">
-                                <div class="posts">
+                                <div class="posts activity-posts">
 
-
-                                    <div class="card" aria-hidden="true">
+                                    <?php
+                                    $allQSql = mysqli_query($connection, "SELECT problem_id FROM problem_asked");
+                                    for ($i = 0; $i < mysqli_num_rows($allQSql); $i++) {
+                                        echo '
+                                        <div class="card" aria-hidden="true">
                                         <div class="card-body">
                                             <h5 class="card-title placeholder-glow">
                                                 <span class="placeholder col-12 h4 rounded"></span>
@@ -143,61 +145,10 @@ if (!isset($_SESSION['user_id'])) {
                                                     style="margin-left:10px"></span>
                                             </p>
                                         </div>
-                                    </div>
-                                    <div class="card" aria-hidden="true">
-                                        <div class="card-body">
-                                            <h5 class="card-title placeholder-glow">
-                                                <span class="placeholder col-12 h4 rounded"></span>
-                                            </h5>
-                                            <p class="card-text placeholder-glow">
-                                                <span class="placeholder col-12 h1 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-5" style="visibility:hidden;"></span>
-                                                <span class="placeholder col-2 h5 mt-2  rounded"></span>
-                                                <span class="placeholder col-2 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-4 h5 mt-2 rounded"
-                                                    style="margin-left:10px"></span>
-                                            </p>
                                         </div>
-                                    </div>
-                                    <div class="card" aria-hidden="true">
-                                        <div class="card-body">
-                                            <h5 class="card-title placeholder-glow">
-                                                <span class="placeholder col-12 h4 rounded"></span>
-                                            </h5>
-                                            <p class="card-text placeholder-glow">
-                                                <span class="placeholder col-12 h1 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-5" style="visibility:hidden;"></span>
-                                                <span class="placeholder col-2 h5 mt-2  rounded"></span>
-                                                <span class="placeholder col-2 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-4 h5 mt-2 rounded"
-                                                    style="margin-left:10px"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="card" aria-hidden="true">
-                                        <div class="card-body">
-                                            <h5 class="card-title placeholder-glow">
-                                                <span class="placeholder col-12 h4 rounded"></span>
-                                            </h5>
-                                            <p class="card-text placeholder-glow">
-                                                <span class="placeholder col-12 h1 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-5" style="visibility:hidden;"></span>
-                                                <span class="placeholder col-2 h5 mt-2  rounded"></span>
-                                                <span class="placeholder col-2 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
-                                                <span class="placeholder col-4 h5 mt-2 rounded"
-                                                    style="margin-left:10px"></span>
-                                            </p>
-                                        </div>
-                                    </div>
+                                        ';
+                                    }
+                                    ?>
 
 
 
@@ -209,57 +160,138 @@ if (!isset($_SESSION['user_id'])) {
                         </div>
                         <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
                             tabindex="0">
-                            Pending </div>
+                            <div class="post-container">
+                                <div class="posts pending-posts">
+                                    <?php
+                                    $allQSql = mysqli_query($connection, "SELECT problem_id FROM problem_asked");
+                                    for ($i = 0; $i < mysqli_num_rows($allQSql); $i++) {
+                                        echo '
+                                        <div class="card" aria-hidden="true">
+                                        <div class="card-body">
+                                            <h5 class="card-title placeholder-glow">
+                                                <span class="placeholder col-12 h4 rounded"></span>
+                                            </h5>
+                                            <p class="card-text placeholder-glow">
+                                                <span class="placeholder col-12 h1 rounded"></span>
+                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-5" style="visibility:hidden;"></span>
+                                                <span class="placeholder col-2 h5 mt-2  rounded"></span>
+                                                <span class="placeholder col-2 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-4 h5 mt-2 rounded"
+                                                    style="margin-left:10px"></span>
+                                            </p>
+                                        </div>
+                                        </div>
+                                        ';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+
+                        </div>
                         <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
                             tabindex="0">
-                            Solved </div>
+                            <div class="post-container">
+                                <div class="posts solved-posts">
+                                    <?php
+                                    $allQSql = mysqli_query($connection, "SELECT problem_id FROM problem_asked");
+                                    for ($i = 0; $i < mysqli_num_rows($allQSql); $i++) {
+                                        echo '
+                                        <div class="card" aria-hidden="true">
+                                        <div class="card-body">
+                                            <h5 class="card-title placeholder-glow">
+                                                <span class="placeholder col-12 h4 rounded"></span>
+                                            </h5>
+                                            <p class="card-text placeholder-glow">
+                                                <span class="placeholder col-12 h1 rounded"></span>
+                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-5" style="visibility:hidden;"></span>
+                                                <span class="placeholder col-2 h5 mt-2  rounded"></span>
+                                                <span class="placeholder col-2 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-3 h5 mt-2 rounded"></span>
+                                                <span class="placeholder col-4 h5 mt-2 rounded"
+                                                    style="margin-left:10px"></span>
+                                            </p>
+                                        </div>
+                                        </div>
+                                        ';
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
                 <div class="rated_students_list">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">Rating: 74</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">52</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">44</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">40</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">37</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">37</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">37</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">37</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">37</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zzzzzz zzzz zzzzz
-                            <span class="badge bg-primary rounded-pill">37</span>
-                        </li>
+                    <h5 style="color:#fff; 
+                        text-align: center; 
+                        font-size: 20px;
+                        font-weight:bolder; 
+                        letter-spacing:0.5px;
+                        margin-bottom: 20px;">
+                        Top Contributors
+                    </h5>
 
-                    </ul>
+
+                    <div class="list-group">
+
+                        <ul>
+                            <li class="list-group-item list-heading">
+                                <div class="user">
+                                    <p>User</p>
+                                </div>
+                                <div class="rating">
+                                    <p>Rating</p>
+                                </div>
+                            </li>
+                            <?php
+                            $topUserSql = mysqli_query($connection, "SELECT name,img,rating FROM users ORDER BY rating desc");
+                            if (mysqli_num_rows($topUserSql) > 0) {
+                                for ($i = 0; $i < 10; $i++) {
+                                    if ($userRow = mysqli_fetch_assoc($topUserSql)) {
+                                        echo '
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="user-info d-flex align-items-center justify-content-center">
+                                        <div style="
+                                    width: 30px;
+                                    height: 30px;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    margin-right: 10px;
+                                    overflow: hidden;
+                                    border-radius: 50%;">
+                                            <a>
+                                                <img src="resources/profile-pic/' . $userRow['img'] . '" alt="Avatar"
+                                                    style="width: 35px;" class="">
+                                            </a>
+                                        </div>
+                                        <h6>' . $userRow['name'] . '</h6>
+                                    </div>
+                                    <span>' . $userRow['rating'] . '</span>
+
+
+                                    </li>
+                                    
+                                    ';
+                                    } else {
+                                        break;
+                                    }
+
+                                }
+                            }
+
+                            ?>
+
+                        </ul>
+
+                    </div>
 
                     <div class="buttons">
                         <!-- <button type="submit" name="btnClicked" class="btn  pblm-post" data-bs-toggle="modal"

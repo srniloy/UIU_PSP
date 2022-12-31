@@ -52,7 +52,39 @@ if (isset($_SESSION['user_id'])) {
             }
         }
 
+        if ($_POST['countCode'] === "aStar") {
+            $answer_id = mysqli_escape_string($connection, $_POST['answer_id']);
+            $qpSql = mysqli_query($connection, "SELECT is_accepted,posted_by FROM answer WHERE answer_id = '{$answer_id}'");
 
+            if (mysqli_num_rows($qpSql) > 0) {
+                $qpRow = mysqli_fetch_assoc($qpSql);
+                if ($qpRow['is_accepted'] == 1) {
+                    mysqli_query($connection, "UPDATE answer SET is_accepted = 0 WHERE answer_id = '{$answer_id}'");
+
+
+                    $ratingSql = mysqli_query($connection, "SELECT rating FROM users WHERE student_id  = '{$qpRow['posted_by']}'");
+                    if (mysqli_num_rows($ratingSql) > 0) {
+                        $UserRatingRow = mysqli_fetch_assoc($ratingSql);
+                        $rating = intval($UserRatingRow['rating']) - 5;
+                        mysqli_query($connection, "UPDATE users SET rating = $rating WHERE student_id = '{$qpRow['posted_by']}'");
+
+                        echo "notAccepted";
+                    }
+
+                } else {
+                    mysqli_query($connection, "UPDATE answer SET is_accepted = 1 WHERE answer_id = '{$answer_id}'");
+
+                    $ratingSql = mysqli_query($connection, "SELECT rating FROM users WHERE student_id  = '{$qpRow['posted_by']}'");
+                    if (mysqli_num_rows($ratingSql) > 0) {
+                        $UserRatingRow = mysqli_fetch_assoc($ratingSql);
+                        $rating = intval($UserRatingRow['rating']) + 5;
+                        mysqli_query($connection, "UPDATE users SET rating = $rating WHERE student_id = '{$qpRow['posted_by']}'");
+
+                        echo "accepted";
+                    }
+                }
+            }
+        }
 
 
     }

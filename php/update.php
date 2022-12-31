@@ -192,6 +192,32 @@ if (isset($_SESSION['user_id'])) {
 
         }
 
+        // ================================================================================
+
+
+
+
+
+    } else if (isset($_GET['updateCode'])) {
+        if ($_GET['updateCode'] === "qpIssue") {
+
+            $qp_id = mysqli_escape_string($connection, $_GET['qp_id']);
+
+            $qpSql = mysqli_query($connection, "SELECT error FROM question_paper WHERE qp_id = '{$qp_id}'");
+
+            if (mysqli_num_rows($qpSql) > 0) {
+                $qpRow = mysqli_fetch_assoc($qpSql);
+                if ($qpRow['error'] == 1) {
+                    mysqli_query($connection, "UPDATE question_paper SET error = 0 WHERE qp_id = '{$qp_id}'");
+                    header("location:../profile.php");
+                } else {
+                    mysqli_query($connection, "UPDATE question_paper SET error = 1 WHERE qp_id = '{$qp_id}'");
+                    header("location:../profile.php");
+                }
+            }
+
+
+        }
     }
 
 }

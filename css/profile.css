@@ -27,6 +27,7 @@ body{
     background-position: center;
     background-size: cover;
     min-height: 100vh;
+    
     max-height: max-content;
     overflow: auto;
 }
@@ -51,7 +52,7 @@ body{
     align-items: center;
     flex-direction: column;
     overflow: auto;
-
+    min-height: 100vh;
 }
 
 .profile-wrapper .top_bar {
@@ -149,10 +150,17 @@ body{
     display: flex;
     padding: 10px;
 }
-.profile .profile-pic img{
+.profile_pic{
     width: 100px;
     height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     border-radius: 50%;
+}
+.profile_pic img{
+    width: 100px;
 }
 .profile .user-info{
     padding: 10px;
@@ -483,12 +491,15 @@ body{
 .course_container .qp-pdf-continer ul li p{
     margin: 0;
 }
+.course_container .qp-pdf-continer ul li a{
+    text-decoration: none;
+}
 .course_container .qp-pdf-continer ul li i{
     margin-left: 10px;
     font-size: 20px;
 }
 .course_container .qp-pdf-continer ul li a:first-child i:hover{
-    color: red;
+    color: #e00000;
 }
 .course_container .qp-pdf-continer ul li a:last-child i:hover{
     color: #ffffff

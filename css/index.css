@@ -62,7 +62,20 @@ body {
     flex-direction: column;
 
 }
+/* ================================================== */
 
+.profile_pic{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.profile_pic img{
+    width: 35px;
+}
 .user_dashboard .top_bar {
     width: 100%;
     background-color: #1e2022;
@@ -343,16 +356,52 @@ body {
 }
 
 .user_dashboard .rated_students_list {
-    flex: 1;
     border-left: 2px solid rgb(28, 28, 28);
     padding: 30px 20px 0px;
-    background-color: #00000013;
-
+    
 }
 
 .user_dashboard .rated_students_list ul {
-    list-style-type: disc !important;
+    /* list-style-type: disc !important; */
     margin-bottom: 10px;
+    border-radius: 5px;
+}
+.user_dashboard .rated_students_list ul li{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dddddd;
+}
+.user_dashboard .rated_students_list ul li h6{
+    font-weight: bolder;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+.user_dashboard .rated_students_list ul li span{
+    padding: 0 5px;
+    margin-left: 20px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    border-radius: 5px;
+    background-color: #f50;
+    color: white;
+}
+.user_dashboard .rated_students_list ul .list-heading{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e45107;
+}
+.user_dashboard .rated_students_list ul .list-heading .user{
+    margin-left: 20px ;
+}
+.user_dashboard .rated_students_list ul .list-heading p{
+    /* text-align: center; */
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.7px;
+    margin: 0;
 }
 
 /* --------------search automaiton-------------------- */
