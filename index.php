@@ -100,7 +100,7 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
                 </nav>
             </div>
-            <div class="user_dashboard_container">
+            <div class="user_dashboard_container mt-4">
 
                 <div class="user_activity">
                     <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">

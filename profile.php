@@ -69,7 +69,7 @@ if (!isset($_SESSION['user_id'])) {
 
 
 
-            <div class="profile-container">
+            <div class="profile-container mt-4">
 
                 <section class="first-sec">
                     <div class="profile-pic">
