@@ -16,10 +16,9 @@ if (!empty($id) && !empty($password)) {
             $_SESSION['user_id'] = $row['student_id'];
             echo "success";
         } else {
-            echo "Wrong password";
+            echo "Wrong password! try again...";
         }
     } else {
-        echo "User does not exist with this Student_id";
-
+        echo "User does not exist with this ID - " . $id;
     }
 }

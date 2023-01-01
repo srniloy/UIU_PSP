@@ -19,12 +19,24 @@ if (isset($_SESSION['user_id'])) {
             if (!empty($name) && !empty($id) && !empty($email) && !empty($password)) {
 
                 if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $sql = mysqli_query($connection, "SELECT email FROM users WHERE email = '{$email}' AND student_id != '{$_SESSION['user_id']}'");
+                    $sql = mysqli_query($connection, "SELECT email,student_id FROM users WHERE email = '{$email}' AND student_id != '{$_SESSION['user_id']}'");
+
+
+
                     if (mysqli_num_rows($sql) > 0) {
                         echo $email . " - This email already exist";
                     } else {
+                        $checkUserId = true;
+                        if ($_POST['student_id'] != $_SESSION['user_id']) {
 
-                        if (isset($_FILES['profilePic'])) {
+                            $checkIdSql = mysqli_query($connection, "SELECT student_id FROM users WHERE student_id = '{$id}'");
+                            if (mysqli_num_rows($checkIdSql) > 0) {
+                                $checkUserId = false;
+                                echo $id . " - Using this id another user exist";
+                            }
+
+                        }
+                        if (isset($_FILES['profilePic']) && $checkUserId) {
                             $img_name = $_FILES['profilePic']['name'];
                             $img_type = $_FILES['profilePic']['type'];
                             $tmp_name = $_FILES['profilePic']['tmp_name'];
@@ -48,7 +60,11 @@ if (isset($_SESSION['user_id'])) {
                                     WHERE student_id = '{$_SESSION['user_id']}'"
                                     );
                                     if ($sql2) {
-                                        echo "success";
+                                        if ($_SESSION['user_id'] != $_POST['student_id']) {
+                                            echo "successLog";
+                                        } else {
+                                            echo "success";
+                                        }
                                     } else {
                                         echo "Something went wrong!";
                                     }
@@ -64,7 +80,11 @@ if (isset($_SESSION['user_id'])) {
                                 WHERE student_id = '{$_SESSION['user_id']}'"
                                 );
                                 if ($sql2) {
-                                    echo "success";
+                                    if ($_SESSION['user_id'] != $_POST['student_id']) {
+                                        echo "successLog";
+                                    } else {
+                                        echo "success";
+                                    }
                                 }
                             }
                         }

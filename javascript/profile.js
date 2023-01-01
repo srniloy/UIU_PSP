@@ -15,6 +15,8 @@ updateInfoBtn.onclick = ()=>{
                 console.log(data);
                 if(data == "success"){
                     location.href = "profile.php";
+                }else if(data == "successLog"){
+                    location.href = "login.php";
                 }
             }
         }

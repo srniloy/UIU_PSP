@@ -87,7 +87,7 @@ if (isset($_SESSION['user_id'])) {
 
                                         if (mysqli_num_rows($ratingSql) > 0) {
                                             $UserRatingRow = mysqli_fetch_assoc($ratingSql);
-                                            $rating = intval($UserRatingRow['rating']) + 5;
+                                            $rating = intval($UserRatingRow['rating']) + 10;
                                             mysqli_query($connection, "UPDATE users SET rating = $rating WHERE student_id = '{$_SESSION['user_id']}'");
 
                                             echo "success";

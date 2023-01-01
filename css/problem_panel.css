@@ -85,8 +85,8 @@ body::-webkit-scrollbar-thumb
     background-color: #1e2022;
     padding: 50px;
     border-radius: 10px;
-    min-width: 1300px;
-    max-width: 1500px;
+    min-width: 1200px;
+    max-width: 1300px;
     min-height: 800px;
     margin-top: 10px;
 }

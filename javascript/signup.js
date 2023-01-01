@@ -1,5 +1,6 @@
 const form = document.querySelector(".signup_page form"),
-submitBtn = document.querySelector(".signup_page form button");
+submitBtn = document.querySelector(".signup_page form button"),
+errorTxt = document.querySelector(".error-text");
 
 form.onsubmit = (e)=>{
     e.preventDefault();
@@ -16,7 +17,10 @@ submitBtn.onclick = ()=>{
                 if(data == "success"){
                     location.href = "index.php";
                 }
-                console.log(data);
+                else if(data != ""){
+                    errorTxt.textContent = data;
+                    errorTxt.style.display = "block";
+                }
             }
         }
     }

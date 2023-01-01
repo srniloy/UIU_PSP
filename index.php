@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UIU Student Hub</title>
+    <title>UIU PSP</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -269,7 +269,8 @@ if (!isset($_SESSION['user_id'])) {
                                     border-radius: 50%;">
                                             <a>
                                                 <img src="resources/profile-pic/' . $userRow['img'] . '" alt="Avatar"
-                                                    style="width: 35px;" class="">
+                                                    style="width: 30px;height: 30px;
+                                                    object-fit: cover;" class="">
                                             </a>
                                         </div>
                                         <h6>' . $userRow['name'] . '</h6>

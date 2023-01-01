@@ -75,6 +75,8 @@ body {
 }
 .profile_pic img{
     width: 35px;
+    height: 35px;
+    object-fit: cover;
 }
 .user_dashboard .top_bar {
     width: 100%;
@@ -357,7 +359,7 @@ body {
 
 .user_dashboard .rated_students_list {
     border-left: 2px solid rgb(28, 28, 28);
-    padding: 30px 20px 0px;
+    padding: 30px 20px 0px 0px;
     
 }
 
@@ -365,6 +367,7 @@ body {
     /* list-style-type: disc !important; */
     margin-bottom: 10px;
     border-radius: 5px;
+    list-style: none;
 }
 .user_dashboard .rated_students_list ul li{
     display: flex;
@@ -385,6 +388,9 @@ body {
     border-radius: 5px;
     background-color: #f50;
     color: white;
+}
+.user_dashboard .rated_students_list .list-group{
+    padding: 0 !important;
 }
 .user_dashboard .rated_students_list ul .list-heading{
     display: flex;

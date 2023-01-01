@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2022 at 07:42 PM
+-- Generation Time: Jan 01, 2023 at 07:43 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -41,7 +41,11 @@ CREATE TABLE `answer` (
 --
 
 INSERT INTO `answer` (`answer_id`, `problem_id`, `description`, `posted_by`, `last_modified`, `is_accepted`) VALUES
-('P0_1672511324_011202271_S0', 'P0_1672511324_011202271', 'Electric current is flow of electrons in a conductor. The force required to make current flow through a conductor is called voltage and potential is the other term of voltage. For example, the first element has more positive charges, so it has higher potential. On the other hand, the second element has charges that are more negative so it has lower potential. The difference between two points is called potential difference.\r\n\r\nElectromotive force means the force which makes current continuously flows through a conductor. This force can be generated from power generator, battery, flashlight battery and fuel cell, etc.', '01202088', '2023-01-01 00:31:02', 1);
+('P0_1672593124_011202271_S1', 'P0_1672593124_011202271', 'If I understand correctly, you would like a mean to specify the version of TypeScript that should be used to compile a given project. And some automated mechanism to have the correct tsc version, or to raise an error.', '011202272', '2023-01-01 23:56:27', 0),
+('P0_1672593124_011202271_S2', 'P0_1672593124_011202271', 'This is very friendly to the branch predictor since the branch consecutively goes the same direction many times. Even a simple saturating counter will correctly predict the branch except for the few iterations after it switches direction.', '011202274', '2023-01-02 00:27:14', 0),
+('P1_1672593213_011202271_S0', 'P1_1672593213_011202271', 'We would likely need a little bit more detail to be sure the best way to solve, but it seems there are a few ways of approaching this.\r\n\r\nYou\'ve said that you can get the user id into JavaScript. I\'m presuming this means the browser is needing to make the connection to the Flask app. If you have the option of doing this with the WordPress site calling the Flask app directly (server-to-server) you can avoid a lot of hassle.', '011202273', '2023-01-01 23:17:47', 1),
+('P2_1672597306_011202274_S3', 'P2_1672597306_011202274', 'The KMP algorithm searches for a length-m substring in a length-n string in worst-case O(n+m) time, compared to a worst-case of O(n⋅m) for the naive algorithm, so using KMP may be reasonable if you care about worst-case time complexity.', '011202275', '2023-01-02 00:33:01', 0),
+('P3_1672597813_011202275_S4', 'P3_1672597813_011202275', 'The code above produces no output on my Windows machine. So any time zone which has any offset other than its standard one at the start of 1900 will count that as a transition. TZDB itself has some data going back earlier than that, and doesn\'t rely on any idea', '011202277', '2023-01-02 00:37:03', 0);
 
 -- --------------------------------------------------------
 
@@ -59,7 +63,9 @@ CREATE TABLE `ans_img` (
 --
 
 INSERT INTO `ans_img` (`img_name`, `ans_id`) VALUES
-('1672511462Screenshot 2023-01-01 at 00-30-48 Understanding Electricity - Learn about electricity current voltage and resistance.png', 'P0_1672511324_011202271_S0');
+('1672597634Screenshot_20230102_122659.png', 'P0_1672593124_011202271_S2'),
+('1672593467Screenshot_20230101_111729.png', 'P1_1672593213_011202271_S0'),
+('1672598223Screenshot_20230101_111326.png', 'P3_1672597813_011202275_S4');
 
 -- --------------------------------------------------------
 
@@ -74,6 +80,13 @@ CREATE TABLE `a_comment` (
   `last_modified` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `a_comment`
+--
+
+INSERT INTO `a_comment` (`comment_text`, `answer_id`, `student_id`, `last_modified`) VALUES
+('Nice explaination !', 'P0_1672593124_011202271_S1', '011202274', '2023-01-02 00:23:30');
+
 -- --------------------------------------------------------
 
 --
@@ -84,6 +97,18 @@ CREATE TABLE `a_likes` (
   `user_id` varchar(20) DEFAULT NULL,
   `answer_id` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `a_likes`
+--
+
+INSERT INTO `a_likes` (`user_id`, `answer_id`) VALUES
+('011202273', 'P1_1672593213_011202271_S0'),
+('011202271', 'P1_1672593213_011202271_S0'),
+('011202273', 'P0_1672593124_011202271_S1'),
+('011202274', 'P0_1672593124_011202271_S1'),
+('011202274', 'P0_1672593124_011202271_S2'),
+('011202275', 'P2_1672597306_011202274_S3');
 
 -- --------------------------------------------------------
 
@@ -101,7 +126,6 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_code`, `course_title`) VALUES
-(' SOC 101/SOC 2101', ' Society, Environment and Engineering'),
 ('ACT 111/ACT 2111', 'Financial and Managerial Accounting'),
 ('BDS 1201', 'History of the Emergence of Bangladesh'),
 ('BIO 3105', 'Biology for Engineers'),
@@ -133,7 +157,7 @@ INSERT INTO `course` (`course_code`, `course_title`) VALUES
 ('CSE 4523/CSI 423', 'Simulation & Modeling/Simulation and Modeling'),
 ('CSE 4587/CSE 487', 'Cloud Computing'),
 ('CSE 4611/CSI 411', 'Compiler/Compiler Design'),
-('CSE 4633', ' Basic Graph Theory'),
+('CSE 4633', 'Basic Graph Theory'),
 ('CSE 469/PMG 4101', 'Project Management'),
 ('CSE 483/CSE 4883', 'Digital Image Processing'),
 ('CSE 4889/CSE 489', 'Machine Learning'),
@@ -176,7 +200,8 @@ INSERT INTO `course` (`course_code`, `course_title`) VALUES
 ('PHY 101/PHY 1101', 'Physics I'),
 ('PHY 103/PHY 1103', 'Physics II'),
 ('PHY 105/PHY 2105', 'Physics'),
-('PSY 101/PSY 2101', 'Psychology');
+('PSY 101/PSY 2101', 'Psychology'),
+('SOC 101/SOC 2101', 'Society, Environment and Engineering');
 
 -- --------------------------------------------------------
 
@@ -212,7 +237,10 @@ CREATE TABLE `pblm_img` (
 --
 
 INSERT INTO `pblm_img` (`img_name`, `problem_id`) VALUES
-('1672511324afc.png', 'P0_1672511324_011202271');
+('1672593124Screenshot_20230101_111153.png', 'P0_1672593124_011202271'),
+('1672593213Screenshot_20230101_111326.png', 'P1_1672593213_011202271'),
+('1672597306Screenshot_20230102_122125.png', 'P2_1672597306_011202274'),
+('1672598415Screenshot_20230102_124005.png', 'P4_1672598415_011202277');
 
 -- --------------------------------------------------------
 
@@ -236,7 +264,11 @@ CREATE TABLE `problem_asked` (
 --
 
 INSERT INTO `problem_asked` (`title`, `problem_id`, `description`, `course_code`, `topic_name`, `views`, `student_id`, `last_modified`) VALUES
-('How to measure Current, Voltage and Resistance?', 'P0_1672511324_011202271', 'While I was trying to solve this, I have faced that A current of one amp means that current pass through a cross-section of two conductors, which are placed in parallel 1 meter apart with 2x10-7 Newton per meter force occur in each conductor. It can also mean charges of one coulomb (or 6.24x1018 electrons) passing through a cross-section of a conductor in one second.', 'EEE 207/EEE 2103', 'Current Flow', 4, '011202271', '2023-01-01 00:28:44');
+('How to optimize Linq query with large number of records?', 'P0_1672593124_011202271', '\r\n\r\nThe bounty expires in 10 hours. Answers to this question are eligible for a +300 reputation bounty. StarLord is looking for a more detailed answer to this question:\r\nI want to see a significant performance improvement for this.\r\nPlease help me to optimize the below code. I have tried different methods but I am not getting a significant performance improvement. There are around 30k entries in database and it\'s taking around 1 min to load in local.', 'CSE 2215/CSI 217', 'DFS', 10, '011202271', '2023-01-01 23:12:04'),
+('ReactJS Kanban Board Drag and Drop without using external libraries', 'P1_1672593213_011202271', 'I am creating a Kanban Board in ReactJS. All the stages are stored as a JSON with their respective tasks. I want to be able to drag and drop a task to a given stage headline in order to move it from one stage to another.', 'CSE 4495/CSE 495', 'Verification', 8, '011202271', '2023-01-01 23:13:33'),
+('The network of transistors, transformers, capacitors, connecting wires, and other electronic?', 'P2_1672597306_011202274', 'The second component is the device. It responds to the current passing through it. Today, a device is something that can be plugged into a wall socket and used with electricity. The loop is generally closed using a piece of conducting material. It is usually a wire but there are other kinds of materials that can close the loop too. For example, there are various strips of metal inside the television that have been deposited onto a plastic surface that may be the conducting material or even in some cases, the chassis of a device that becomes part of the closed circuit.', 'CSE 113/EEE 2113', 'Electric Circuit', 2, '011202274', '2023-01-02 00:21:46'),
+('How do I check if an element is hidden in jQuery?', 'P3_1672597813_011202275', 'How do I toggle the visibility of an element using .hide(), .show(), or .toggle()?\r\n\r\nHow do I test if an element is visible or hidden?', 'CSE 1115/CSI 211', 'jQuery', 3, '011202275', '2023-01-02 00:30:13'),
+('What is the difference between String and string in C#?', 'P4_1672598415_011202277', 'Usually I would expect a String.contains() method, but there doesn\'t seem to be one.\r\n\r\nWhat is a reasonable way to check for this?', 'CSE 1111/CSI 121', 'String', 2, '011202277', '2023-01-02 00:40:15');
 
 -- --------------------------------------------------------
 
@@ -251,6 +283,15 @@ CREATE TABLE `p_comment` (
   `last_modified` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `p_comment`
+--
+
+INSERT INTO `p_comment` (`comment_text`, `problem_id`, `student_id`, `last_modified`) VALUES
+('Nice question', 'P0_1672593124_011202271', '011202274', '2023-01-02 00:23:57'),
+('You can use string without a using directive for System. You can\'t do that with String', 'P0_1672593124_011202271', '011202275', '2023-01-02 00:34:05'),
+('Can you please Explain it clearly?', 'P3_1672597813_011202275', '011202277', '2023-01-02 00:37:36');
+
 -- --------------------------------------------------------
 
 --
@@ -261,6 +302,19 @@ CREATE TABLE `p_likes` (
   `problem_id` varchar(100) NOT NULL,
   `user_id` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `p_likes`
+--
+
+INSERT INTO `p_likes` (`problem_id`, `user_id`) VALUES
+('P1_1672593213_011202271', '011202273'),
+('P1_1672593213_011202271', '011202271'),
+('P0_1672593124_011202271', '011202271'),
+('P0_1672593124_011202271', '011202273'),
+('P2_1672597306_011202274', '011202275'),
+('P3_1672597813_011202275', '011202277'),
+('P4_1672598415_011202277', '011202277');
 
 -- --------------------------------------------------------
 
@@ -275,7 +329,7 @@ CREATE TABLE `question_paper` (
   `ques_type` varchar(30) NOT NULL,
   `ques_file` varchar(50) NOT NULL,
   `error` int(11) NOT NULL,
-  `uploader_id` varchar(30) NOT NULL,
+  `uploader_id` varchar(30) DEFAULT NULL,
   `last_modified` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -284,7 +338,16 @@ CREATE TABLE `question_paper` (
 --
 
 INSERT INTO `question_paper` (`qp_id`, `course_code`, `trimester_id`, `ques_type`, `ques_file`, `error`, `uploader_id`, `last_modified`) VALUES
-('221~Mid~CSE_4521', 'CSE 4521/CSE 4621', '221', 'Mid', '221~Mid~CSE_4521~1672511008.pdf', 1, '011202271', '2023-01-01 00:23:50');
+('231~Final~CSE_323', 'CSE 323/CSE 3711/EEE 4413', '231', 'Final', '231~Final~CSE_323~1672596879.pdf', 1, '011202273', '2023-01-02 00:14:39'),
+('231~Mid~CSE_313', 'CSE 313/CSE 3313/EEE 4411', '231', 'Mid', '231~Mid~CSE_313~1672595403.pdf', 1, '011202271', '2023-01-01 23:50:03'),
+('231~Mid~CSE_3521', 'CSE 3521/CSI 221', '231', 'Mid', '231~Mid~CSE_3521~1672593285.pdf', 1, '011202274', '2023-01-01 23:14:45'),
+('231~Mid~CSE_3811', 'CSE 3811/CSI 341', '231', 'Mid', '231~Mid~CSE_3811~1672597862.pdf', 1, '011202275', '2023-01-02 00:31:02'),
+('232~Final~CSE_323', 'CSE 323/CSE 3711/EEE 4413', '232', 'Final', '232~Final~CSE_323~1672596897.pdf', 1, '011202273', '2023-01-02 00:14:57'),
+('232~Final~CSE_3521', 'CSE 3521/CSI 221', '232', 'Final', '232~Final~CSE_3521~1672593329.pdf', 1, '011202274', '2023-01-01 23:15:29'),
+('232~Mid~CSE_313', 'CSE 313/CSE 3313/EEE 4411', '232', 'Mid', '232~Mid~CSE_313~1672595422.pdf', 1, '011202271', '2023-01-01 23:50:22'),
+('232~Mid~CSE_3521', 'CSE 3521/CSI 221', '232', 'Mid', '232~Mid~CSE_3521~1672593300.pdf', 0, '011202274', '2023-01-01 23:15:59'),
+('233~Final~CSE_3521', 'CSE 3521/CSI 221', '233', 'Final', '233~Final~CSE_3521~1672593341.pdf', 1, '011202274', '2023-01-01 23:15:41'),
+('233~Mid~CSE_3521', 'CSE 3521/CSI 221', '233', 'Mid', '233~Mid~CSE_3521~1672593315.pdf', 1, '011202274', '2023-01-01 23:15:15');
 
 -- --------------------------------------------------------
 
@@ -302,9 +365,15 @@ CREATE TABLE `taken_courses` (
 --
 
 INSERT INTO `taken_courses` (`student_id`, `course_code`) VALUES
-('011202271', 'CSE 4633'),
+('011202271', 'CSE 3521/CSI 221'),
+('011202274', 'CSE 3521/CSI 221'),
 ('011202271', 'CSE 313/CSE 3313/EEE 4411'),
-('011202271', 'CSE 4521/CSE 4621');
+('011202273', 'CSE 3521/CSI 221'),
+('011202273', 'CSE 313/CSE 3313/EEE 4411'),
+('011202273', 'CSE 323/CSE 3711/EEE 4413'),
+('011202274', 'CSE 313/CSE 3313/EEE 4411'),
+('011202274', 'CSE 323/CSE 3711/EEE 4413'),
+('011202275', 'CSE 3811/CSI 341');
 
 -- --------------------------------------------------------
 
@@ -324,7 +393,10 @@ CREATE TABLE `trimester` (
 INSERT INTO `trimester` (`trimester_id`, `trimester_name`) VALUES
 ('221', 'Spring'),
 ('222', 'Summer'),
-('223', 'Fall');
+('223', 'Fall'),
+('231', 'Spring'),
+('232', 'Summer'),
+('233', 'Fall');
 
 -- --------------------------------------------------------
 
@@ -346,8 +418,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`student_id`, `name`, `email`, `password`, `img`, `rating`) VALUES
-('011202271', 'Shahriar Rahman Niloy', 'sniloy202271@bscse.uiu.ac.bd', '1234', '1672510918Screenshot 2023-01-01 at 00-21-34 60 Cartoon DP for Boys (HD) - PhotosFile.png', 11),
-('01202088', 'Md. Saiduzzaman Apu', 'mapu202084@bscse.uiu.ac.bd', '1234', '1672511393download.jpg', 8);
+('011202271', 'Shahriar Rahman Niloy', 'sniloy202271@bscse.uiu.ac.bd', '1234', '1672594840profile (4).png', 22),
+('011202272', 'Md Feruz Uddin', 'abc2@bscse.uiu.ac.bd', '1234', '1672595473profile (3).png', 3),
+('011202273', 'Kazi Ayan', 'abc3@bscse.uiu.ac.bd', '1234', '1672596796profile (5).png', 28),
+('011202274', 'Abdur Rahman', 'abc4@bscse.uiu.ac.bd', '1234', '1672597334profile (6).png', 54),
+('011202275', 'Mahadi Hassan', 'abc5@bscse.uiu.ac.bd', '1234', '1672597687profile (2).png', 14),
+('011202276', 'MD Kawsar Ahmed', 'abc6@bscse.uiu.ac.bd', '1234', 'default-img.jpg', 0),
+('011202277', 'Aazair Bary', 'abc7@bscse.uiu.ac.bd', '1234', 'default-img.jpg', 4);
 
 --
 -- Indexes for dumped tables
@@ -514,10 +591,10 @@ ALTER TABLE `p_likes`
 -- Constraints for table `question_paper`
 --
 ALTER TABLE `question_paper`
-  ADD CONSTRAINT `question_paper_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `course` (`course_code`),
-  ADD CONSTRAINT `question_paper_ibfk_2` FOREIGN KEY (`trimester_id`) REFERENCES `trimester` (`trimester_id`),
-  ADD CONSTRAINT `question_paper_ibfk_4` FOREIGN KEY (`uploader_id`) REFERENCES `users` (`student_id`),
-  ADD CONSTRAINT `question_paper_ibfk_5` FOREIGN KEY (`ques_type`) REFERENCES `exams` (`name`);
+  ADD CONSTRAINT `question_paper_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `course` (`course_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_paper_ibfk_2` FOREIGN KEY (`trimester_id`) REFERENCES `trimester` (`trimester_id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_paper_ibfk_4` FOREIGN KEY (`uploader_id`) REFERENCES `users` (`student_id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `question_paper_ibfk_5` FOREIGN KEY (`ques_type`) REFERENCES `exams` (`name`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `taken_courses`

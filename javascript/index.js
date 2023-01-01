@@ -265,6 +265,7 @@ setInterval(()=>{
                 if(pblmPostsLength != ppNums){
                     allPostContainer.innerHTML = dataSplit[1];
                     pblmPostsLength = ppNums;
+                    postTabLink();
                     
                 }
             }
@@ -297,6 +298,8 @@ setInterval(()=>{
                 if(pendingPostsLength != ppNums){
                     pendingPostContainer.innerHTML = dataSplit[1];
                     pendingPostsLength = ppNums;
+                    postTabLink();
+
                 }
             }
         }

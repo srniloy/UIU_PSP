@@ -135,7 +135,10 @@ if (!isset($_SESSION['user_id'])) {
                         ?>
                     </li>
                     <li>Views: <?php echo $pblmPostInfo['views'] ?></li>
-                    <li>Answer: 03</li>
+                    <li>Answer: <?php 
+                        $ansCountSql = mysqli_query($connection, "SELECT * FROM answer WHERE problem_id = '{$_SESSION['current_pblm_id']}'");
+                        echo mysqli_num_rows($ansCountSql);
+                    ?></li>
                 </ul>
                 <p><small class="text-muted">Posted by <a href="#">
                             <?php

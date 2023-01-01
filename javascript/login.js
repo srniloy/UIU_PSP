@@ -1,5 +1,6 @@
 const form = document.querySelector(".login_page form"),
-submitBtn = document.querySelector(".login_page form button");
+submitBtn = document.querySelector(".login_page form button"),
+errorTxt = document.querySelector(".error-text");
 
 form.onsubmit = (e)=>{
     e.preventDefault();
@@ -18,7 +19,11 @@ submitBtn.onclick = ()=>{
                 if(data == "success"){
                     location.href = "index.php";
                 }
-                console.log(data);
+                else{
+                    errorTxt.textContent = data;
+                    errorTxt.style.display = "block";
+                }
+                // console.log(data);
 
             }
         }

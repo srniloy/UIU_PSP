@@ -68,7 +68,6 @@ if (!isset($_SESSION['user_id'])) {
             </div>
 
 
-
             <div class="profile-container mt-4">
 
                 <section class="first-sec">

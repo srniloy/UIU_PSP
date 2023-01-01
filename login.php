@@ -24,6 +24,7 @@
             </div>
 
             <form class="login_form" autocomplete="off" action="#">
+                <div class="error-text">This is an error text</div>
                 <div class="form-floating mb-3">
                     <input type="tel" name="student_id" class="form-control" id="floatingInput" placeholder="Student Id"
                         required>
